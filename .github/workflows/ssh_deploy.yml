@@ -23,14 +23,13 @@ jobs:
           target: "${{ secrets.REMOTE_DIR }}"
 
       - name: Install Silverstripe, build database and flush cache
-        uses: fifsky/ssh-action@master
+        uses: garygrossgarten/github-action-ssh@release
         with:
           command: |
             cd ${{ secrets.REMOTE_DIR }}
             /usr/bin/php7.4 composer.phar install
             /usr/bin/php7.4 /vendor/silverstripe/framework/cli-script.php dev/build flush=1
           host: ${{ secrets.REMOTE_HOST }}
-          user: ${{ secrets.REMOTE_USER }}
-          port: "22"
-          pass: ${{ secrets.SSH_KEY_PASSPHRASE }}
-          key: ${{ secrets.SSH_KEY}}
+          username: ${{ secrets.REMOTE_USER }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+          privateKey: ${{ secrets.SSH_KEY}}
