@@ -6,7 +6,7 @@ SilverStripe\Core\Manifest\ModuleManifest:
 
 SilverStripe\CMS\Model\SiteTree:
   extensions:
-    - Simple\Web\Extensions\SiteTree
+    - TomDoughty\Web\Extensions\SiteTree
 
 ---
 Name: my-project-assetsflysystem

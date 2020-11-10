@@ -3,7 +3,7 @@ const sass = require('gulp-sass');
 const cleanCss = require('gulp-clean-css');
 const webpack = require('webpack-stream');
 
-const themeDir = './themes/simple';
+const themeDir = './themes/tomdoughty';
 
 // Compile SCSS
 function compileCSS() {

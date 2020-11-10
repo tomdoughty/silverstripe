@@ -1,6 +1,6 @@
 <?php
 
-namespace Simple\Web\Extensions;
+namespace TomDoughty\Web\Extensions;
 
 use SilverStripe\Core\Convert;
 use SilverStripe\AssetAdmin\Forms\UploadField;
