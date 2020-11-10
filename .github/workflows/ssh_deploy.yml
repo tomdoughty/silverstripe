@@ -26,7 +26,7 @@ jobs:
         with:
           command: |
             cd ${{ secrets.REMOTE_DIR }}
-            chown www-data -R ${{ secrets.REMOTE_DIR }}
+            chown www-data:www-data -R ${{ secrets.REMOTE_DIR }}
             chmod -R 775 ${{ secrets.REMOTE_DIR }}
             /usr/bin/php7.4 composer.phar install
             /usr/bin/php7.4 vendor/silverstripe/framework/cli-script.php dev/build flush=1
