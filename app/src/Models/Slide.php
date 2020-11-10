@@ -42,8 +42,7 @@ class Slide extends DataObject {
   
   private static $default_sort = 'SortOrder';
 
-  public function getCMSFields()
-  {
+  public function getCMSFields() {
     return FieldList::create(
       UploadField::create('Image', 'Image')->setFolderName('Slides'),
       CheckboxSetField::create('Display', 'Enabled?', [1 => 'Yes'])

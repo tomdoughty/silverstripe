@@ -8,8 +8,7 @@ namespace {
   use SilverStripe\CMS\Model\SiteTree;
   use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 
-  class Page extends SiteTree
-  {
+  class Page extends SiteTree {
     private static $db = [];
 
     private static $has_one = [];

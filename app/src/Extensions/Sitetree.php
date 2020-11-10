@@ -38,8 +38,7 @@ class SiteTree extends DataExtension
     MySQLSchemaManager::ID => 'ENGINE=MyISAM',
   ];
 
-  public function updateCMSFields(FieldList $fields)
-  {
+  public function updateCMSFields(FieldList $fields) {
     $fields->removeByName('MetaTitle');
     $fields->removeByName('MetaDescription');
     $fields->removeByName('MetaKeywords');
@@ -69,19 +68,17 @@ class SiteTree extends DataExtension
     );
   }
   
-  public function GetDefaultDescription()
-  {
+  public function GetDefaultDescription() {
     if ($this->owner->Content) {
       $description = trim($this->owner->obj('Content')->Summary(20, 5));
       if (!empty($description)) {
         return $description;
       }
     }
-    return false;
+    return null;
   }
 
-  public function MetaDescription()
-  {
+  public function MetaDescription() {
     return ($this->owner->MetaDescription) ? $this->owner->MetaDescription : $this->owner->GetDefaultDescription();
   }
 }

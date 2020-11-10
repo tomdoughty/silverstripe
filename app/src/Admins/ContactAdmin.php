@@ -17,7 +17,7 @@ namespace {
     private static $menu_title = 'Contacts';
 
     public function getEditForm($id = null, $fields = null) {
-      $form=parent::getEditForm($id, $fields);
+      $form = parent::getEditForm($id, $fields);
       
       if ($this->modelClass === 'Contact') {
         $gridField = $form->Fields()->dataFieldByName($this->sanitiseClassName($this->modelClass));
