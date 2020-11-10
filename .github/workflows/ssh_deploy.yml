@@ -28,7 +28,7 @@ jobs:
           command: |
             cd ${{ secrets.REMOTE_DIR }}
             /usr/bin/php7.4 composer.phar install
-            /usr/bin/php7.4 /vendor/silverstripe/framework/cli-script.php dev/build flush=1
+            /usr/bin/php7.4 vendor/silverstripe/framework/cli-script.php dev/build flush=1
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
