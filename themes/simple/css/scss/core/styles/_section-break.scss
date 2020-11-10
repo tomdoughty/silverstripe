@@ -1,0 +1,69 @@
+/* ==========================================================================
+   STYLES / #SECTION-BREAK
+   ========================================================================== */
+
+// The % (silent class) allows code to be extended (@extend) to other elements
+// without bloating the code.
+//
+// @example scss
+//  .foo {
+//   @extend %section-break--xl;
+//  }
+
+/**
+ * 1. Extended the section-break--l code for usage of a semantic <hr> with
+ * no class name.
+ *
+ * Original code taken from GDS (Government Digital Service)
+ * https://github.com/alphagov/govuk-frontend
+ */
+
+%section-break {
+  border: 0;
+  margin: 0;
+}
+
+.section-break {
+  @extend %section-break;
+}
+
+%section-break--xl {
+  @include responsive-margin(8, 'top');
+  @include responsive-margin(8, 'bottom');
+}
+
+.section-break--xl {
+  @extend %section-break--xl;
+}
+
+%section-break--l {
+  @include responsive-margin(6, 'top');
+  @include responsive-margin(6, 'bottom');
+}
+
+.section-break--l {
+  @extend %section-break--l;
+}
+
+%section-break--m {
+  @include responsive-margin(4, 'top');
+  @include responsive-margin(4, 'bottom');
+}
+
+.section-break--m {
+  @extend %section-break--m;
+}
+
+%section-break--visible {
+  border-bottom: 1px solid $border-color;
+}
+
+.section-break--visible {
+  @extend %section-break--visible;
+}
+
+hr { /* [1] */
+  @extend %section-break;
+  @extend %section-break--l;
+  @extend %section-break--visible;
+}

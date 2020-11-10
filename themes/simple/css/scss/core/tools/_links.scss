@@ -1,0 +1,88 @@
+// ==========================================================================
+// TOOLS / #LINKS
+// ==========================================================================
+
+//
+// Default link styling
+//
+// Usage: @include link-style-default;
+//
+
+@mixin link-style-default {
+
+  color: $link-color;
+
+  &:visited {
+    color: $link-visited-color;
+  }
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: none;
+  }
+
+  &:focus {
+    @include focused-text();
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:visited {
+      color: $focus-text-color;
+    }
+
+    .icon {
+      fill: $focus-text-color;
+    }
+  }
+
+  &:active {
+    color: $link-active-color;
+  }
+
+}
+
+//
+// White link styling, used in the footer.
+//
+// Usage: @include link-style-white;
+//
+
+@mixin link-style-white {
+
+  color: $color_white;
+
+  &:visited {
+    color: $color_white;
+  }
+
+  &:hover {
+    color: $color_white;
+    text-decoration: none;
+  }
+
+  &:focus {
+    color: $focus-text-color;
+    outline: $focus-width solid transparent;
+    outline-offset: $focus-width;
+    text-decoration: none;
+  }
+
+  &:active {
+    color: $link-active-color;
+  }
+
+}
+
+//
+// Default link hover only styling
+//
+// Usage: @include link-style-hover;
+//
+
+@mixin link-style-hover {
+  &:hover {
+    text-decoration: none;
+  }
+}

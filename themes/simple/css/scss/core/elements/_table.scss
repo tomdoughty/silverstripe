@@ -1,0 +1,52 @@
+/* ==========================================================================
+   ELEMENTS / #TABLES
+   ========================================================================== */
+
+/**
+ * 1. Force `<table>`s to be full-width by default.
+ * 2. Captions are used to improve accessibility,
+ *    but we do not need them visually displayed.
+ */
+
+table {
+  @include responsive-margin(7, 'bottom');
+
+  border-spacing: 0;
+  vertical-align: top;
+  width: 100%; /* [1] */
+
+  @include mq($media-type: print) {
+    page-break-inside: avoid;
+  }
+
+}
+
+thead {
+  th {
+    border-bottom: $border-table-header-width solid $border-color;
+  }
+}
+
+th,
+td {
+  @include typography-responsive(19);
+  @include responsive-padding(3, 'bottom');
+  @include responsive-padding(4, 'right');
+  @include responsive-padding(3, 'top');
+
+  border-bottom: $border-table-cell-width solid $border-color;
+  text-align: left;
+  vertical-align: top;
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+th {
+  font-weight: $font-bold;
+}
+
+caption {
+  @include visually-hidden; /* [2] */
+}

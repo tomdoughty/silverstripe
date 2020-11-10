@@ -1,0 +1,147 @@
+// ==========================================================================
+// SETTINGS / #COLOURS
+// ==========================================================================
+
+//
+// Colours are prefixed with color_ to make them easier to
+// search for within the code base.
+//
+// We use the word color, not colour, for variables.
+//
+
+// sass-lint:disable no-color-hex
+
+$color_blue: #005eb8;
+$color_white: #ffffff;
+$color_black: #212b32;
+$color_green: #007f3b;
+$color_red: #d5281b;
+$color_yellow: #ffeb3b;
+$color_purple: #330072;
+$color_dark-pink: #7C2855;
+
+//
+// Secondary colours
+//
+
+$color_pale-yellow: #fff9c4;
+$color_warm-yellow: #ffb81C;
+$color_aqua-green: #00A499;
+
+//
+// Greyscale
+//
+
+$color_grey-1: #4c6272;
+$color_grey-2: #768692;
+$color_grey-3: #aeb7bd;
+$color_grey-4: #d8dde0;
+$color_grey-5: #f0f4f5;
+
+
+//
+// RGB and alpha values
+//
+// Used to create drop/box shadows e.g. for search suggestions dropdown
+//
+
+$color_grey-1-rgb: rgb(66, 84, 98);
+$alpha-transparency-50: .5;
+
+
+//
+// Functions for tint and shade
+//
+// Usage: tint(color, percentage)
+//        tint($color_black, 10%)
+//        shade(color, percentage)
+//        shade($color_blue, 50%)
+//
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+//
+// Primary colour variations
+//
+// 1. used for link :active states
+// 2. used for .is-active state on main navigation
+// 3. used for :hover states on main navigation
+// 4. used for :active states on main navigation
+// 5. used for primary button and action link icon :hover states
+// 6. used for primary button and action link icon :active states
+//
+
+$color_tint_black-10: tint($color_black, 10%); // [1] //
+
+$color_shade_blue-20: shade($color_blue, 20%); // [2] //
+$color_shade_blue-35: shade($color_blue, 35%); // [3] //
+$color_shade_blue-50: shade($color_blue, 50%); // [4] //
+
+$color_shade_green-35: shade($color_green, 35%); // [5] //
+$color_shade_green-50: shade($color_green, 50%); // [6] //
+
+$color_transparent_white-20: rgba($color_white, .2);
+$color_transparent_blue-50: rgba($color_shade_blue-50, .1);
+
+//
+// Colour aliases
+//
+
+// Text
+$text-color: $color_black;
+$secondary-text-color: $color_grey-1;
+$print-text-color: $color_black;
+
+// Links
+$link-color: $color_blue;
+$link-hover-color: $color_dark-pink;
+$link-active-color: shade($link-color, 50%);
+$link-visited-color: $color_purple;
+
+// Focus
+$focus-color: $color_yellow;
+$focus-text-color: $color_black;
+
+// Border
+$border-color: $color_grey-4;
+$secondary-border-color: $color_transparent_white-20;
+
+// Box shadow
+$box-shadow: rgba(33, 43, 50, .16);
+$box-shadow-color: $color_grey-1-rgb;
+
+//
+// Forms
+//
+
+$error-color: $color_red;
+$form-border-color: $color_grey-1;
+$form-element-background-color: $color_white;
+
+//
+// Buttons
+//
+
+$button-color: $color_green;
+$button-hover-color: shade($button-color, 20%);
+$button-active-color: shade($button-color, 50%);
+$button-shadow-color: shade($button-color, 50%);
+
+$secondary-button-color: $color_grey-1;
+$secondary-button-hover-color: shade($secondary-button-color, 20%);
+$secondary-button-active-color: shade($secondary-button-color, 50%);
+$secondary-button-shadow-color: shade($secondary-button-color, 50%);
+
+$reverse-button-color: $color_white;
+$reverse-button-hover-color: shade($reverse-button-color, 20%);
+$reverse-button-active-color: $color-black;
+$reverse-button-shadow-color: $color-black;
+
+$button-text-color: $color_white;
+$reverse-button-text-color: $color_black;

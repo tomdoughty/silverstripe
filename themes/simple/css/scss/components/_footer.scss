@@ -1,0 +1,76 @@
+/* ==========================================================================
+   COMPONENTS / #FOOTER
+   ========================================================================== */
+
+   .footer {
+    @include clearfix();
+    @include print-hide();
+    @include responsive-padding(5, bottom);
+    @include responsive-padding(5, top);
+  
+    background-color: $color_grey-4;
+    border-top: spacing(1) solid $color_blue;
+  }
+  
+  .footer__list {
+    @include responsive-padding(4, bottom);
+  
+    list-style-type: none;
+    margin: 0;
+    padding-left: spacing(0);
+  
+    @include mq($from: desktop) {
+      float: left;
+      padding-bottom: 0;
+      width: 75%;
+    }
+  }
+  
+  .footer__list-item {
+    @include font(16);
+  
+    @include mq($from: desktop) {
+      float: left;
+      margin-right: spacing(5);
+    }
+  }
+  
+  .footer__list-item-link {
+    color: $secondary-text-color;
+  
+    &:visited {
+      color: $secondary-text-color;
+    }
+  
+    &:hover {
+      color: $text-color;
+    }
+  }
+  
+  .footer__copyright {
+    @include font(16);
+  
+    color: $secondary-text-color;
+    margin-bottom: 0;
+  
+    @include mq($from: desktop) {
+      float: right;
+      text-align: right;
+      width: 25%;
+    }
+  }
+  
+  @include mq($from: desktop) {
+    .footer__list--three-columns {
+      -moz-column-count: 3;
+      -moz-column-gap: spacing(4);
+      -webkit-column-count: 3;
+      -webkit-column-gap: spacing(4);
+      column-count: 3;
+      column-gap: spacing(4);
+  
+      li {
+        float: none;
+      }
+    }
+  }
