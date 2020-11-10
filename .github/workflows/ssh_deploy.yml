@@ -22,7 +22,7 @@ jobs:
           target: "${{ secrets.REMOTE_DIR }}"
           rm: true
 
-      - name: Run Composer, build database and flush cache
+      - name: Composer, build database and flush cache
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: |
