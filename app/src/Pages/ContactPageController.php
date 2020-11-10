@@ -41,12 +41,10 @@ namespace {
           $email->setTo('thomashdoughty@gmail.com'); 
           $email->setFrom($data['Email']); 
           $email->setSubject("Contact Message from {$data["Name"]}"); 
-           
-          $messageBody = " 
-              <p><strong>Name:</strong> {$data['Name']}</p> 
-              <p><strong>Message:</strong> {$data['Message']}</p> 
-          ";
-          $email->setBody($messageBody); 
+          $email->setBody(" 
+            <p><strong>Name:</strong> {$data['Name']}</p> 
+            <p><strong>Message:</strong> {$data['Message']}</p> 
+          "); 
           $email->send(); 
 
           $submission = Contact::create();
