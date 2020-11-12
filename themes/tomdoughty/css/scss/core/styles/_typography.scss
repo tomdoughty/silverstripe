@@ -13,11 +13,12 @@
 //  }
 
 %heading-xl {
-  @include typography-responsive(48);
+  @include typography-responsive(64);
 
   display: block;
   font-weight: $font-bold;
   margin-top: 0;
+  text-align: center;
 
   @include responsive-margin(7, 'bottom');
 }

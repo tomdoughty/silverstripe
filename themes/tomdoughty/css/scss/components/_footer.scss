@@ -7,9 +7,8 @@
     @include print-hide();
     @include responsive-padding(5, bottom);
     @include responsive-padding(5, top);
-  
-    background-color: $color_grey-4;
-    border-top: spacing(1) solid $color_blue;
+
+    background-color: $color_black;
   }
   
   .footer__list {
@@ -36,21 +35,22 @@
   }
   
   .footer__list-item-link {
-    color: $secondary-text-color;
-  
-    &:visited {
-      color: $secondary-text-color;
-    }
-  
+    color: $color_white;
+    text-decoration: none;
+    
     &:hover {
-      color: $text-color;
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: $color_white;
     }
   }
   
   .footer__copyright {
     @include font(16);
   
-    color: $secondary-text-color;
+    color: $color_white;
     margin-bottom: 0;
   
     @include mq($from: desktop) {

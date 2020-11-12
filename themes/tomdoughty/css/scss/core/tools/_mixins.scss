@@ -249,9 +249,8 @@
 
 @mixin toggle-button() {
   background-color: transparent;
-  border: 1px solid $color_white;
+  border: 1px solid $color_black;
   border-radius: $border-radius;
-  color: $color_white;
   cursor: pointer;
 
 
@@ -260,8 +259,9 @@
   }
 
   &:hover {
-    background-color: $color_shade_blue-35;
-    border-color: $color_grey-5;
+    background-color: $color_black;
+    border-color: $color_black;
+    color: $color_white;
     box-shadow: none;
   }
 
@@ -271,9 +271,9 @@
 
   &:active,
   &.is-active {
-    background-color: $color_shade_blue-50;
-    border-color: $color_grey-5;
-    color: $color_grey-5;
+    background-color: $color_black;
+    border-color: $color_black;
+    color: $color_white;
   }
 
 }
@@ -333,14 +333,14 @@
   }
 }
 
-/// NHS logo size helper
+/// Logo size helper
 ///
 /// Saves duplicating the code for when using the logo as a link.
 /// Used in the header and footer.
 
 @mixin logo-size {
   height: 40px;
-  width: 100px;
+  width: 136px;
 }
 
 @mixin logo-size-small {

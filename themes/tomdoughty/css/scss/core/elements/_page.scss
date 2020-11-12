@@ -15,7 +15,7 @@
  */
 
 html {
-  background-color: $color_grey-4;
+  background-color: $color_black;
   font-family: $font, $font-fallback;
   overflow-y: scroll; /* [1] */
 }
@@ -23,7 +23,7 @@ html {
 body {
   -moz-osx-font-smoothing: grayscale; /* [2] */
   -webkit-font-smoothing: antialiased; /* [2] */
-  background-color: $color_grey-5;
+  background-color: $color_white;
   color: $text-color;
   font-size: $base-font-size;
   line-height: _line-height($base-line-height, $base-font-size);

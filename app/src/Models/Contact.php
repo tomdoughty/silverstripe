@@ -28,6 +28,6 @@ namespace {
     ];
     
     private static $default_sort = 'SortOrder';
-  
+    
   }
 }

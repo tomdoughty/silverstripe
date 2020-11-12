@@ -5,9 +5,10 @@ namespace TomDoughty\Web\Models;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Assets\Image;
-use SilverStripe\Forms\FieldList;
 use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\CheckboxSetField;
+use SilverStripe\Forms\RequiredFields;
 
 class Slide extends DataObject {
   
@@ -44,9 +45,17 @@ class Slide extends DataObject {
 
   public function getCMSFields() {
     return FieldList::create(
-      UploadField::create('Image', 'Image')->setFolderName('Slides'),
+      UploadField::create('Image', 'Image')
+        ->setFolderName('Slides')
+        ->setCustomValidationMessage('You must upload an image.'),
       CheckboxSetField::create('Display', 'Enabled?', [1 => 'Yes'])
     );
+  }
+    
+  public function getCMSValidator() {
+    return new RequiredFields([
+      'Image'
+    ]);
   }
 
 }

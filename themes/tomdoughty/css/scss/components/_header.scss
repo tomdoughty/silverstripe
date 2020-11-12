@@ -1,78 +1,21 @@
-/* ==========================================================================
-   COMPONENTS / #HEADER
-   ========================================================================== */
+.header {
+  @include clearfix();
 
-/**
- * The behaviour with regards to responsiveness is as follow:
- *
- * - Mobile to tablet view
- *   Menu toggle button visible and navigation links hidden, search toggle
-     button visible and search form hidden
- *
- * - Tablet to desktop view
- *   Menu toggle button visible and navigation links hidden, search toggle
- *   button hidden and search form visible
- *
- * - Desktop+ view
- *   Menu toggle button hidden and navigation links visible, search toggle
- *   button hidden and search form visible
- *
- * 1. Custom height and width of the logo
- * 2. Custom height and width of form items
- * 3. Custom height and width of svg icons
- * 4. Remove inner border on buttons for Firefox, see
- *    https://github.com/necolas/normalize.css/issues/393
- * 5. Proprietary extension so form field looks the same in Safari
- * 6. Needs !important because typeahead js adds inline styling so need to
- *    override
- * 7. Custom spacing to position the search icon
- * 8. Drop shadow on search suggestions dopdown box, custom spread and blur
- * 9. No current spacing at 12px so using this value
- * 10. Z-index to bring the dropdown to the front
- * 11. Custom margin to move menu toggle past the search toggle button
- * 12. Custom border value between expanded search and expanded menu if both open at the same time
- * 13. Don't display the link address for the logo anchor, see
- *     core/elements/_links.scss
- * 14. IE 10 prefix for flexbox
- * 15. IE 9 alternative for flexbox
- * 16. Use non variable colour to follow NHS England guidelines on logo colour
- * 17. On print stylesheets remove the header link
- * 18. Remove random top margin in Safari
- */
+  background: $color_white;
+}
+ 
+.header__container {
+  @include clearfix();
 
- .header {
-   @include clearfix();
-   background-color: $color_blue;
- }
- 
- .header__container {
-   @include clearfix();
- 
-   padding: 20px 0;
- 
-   @include mq($until: tablet) {
-     padding: spacing(3);
-   }
- }
+  padding: 15px 0;
+
+  @include mq($until: tablet) {
+    padding: spacing(3);
+  }
+}
  
  .header__logo {
    float: left;
- 
-   .logo__background {
-     fill: $color_white;
- 
-     @include mq($media-type: print) {
-       fill: $color_blue;
-     }
-   }
- 
-   .logo__text {
-     fill: $color_blue;
- 
-     @include mq($media-type: print) {
-       fill: $color_white;
-     }
-   }
  
    @include mq($from: tablet) {
      padding-left: 0;
@@ -99,7 +42,7 @@
  
    &:hover {
      .logo {
-       box-shadow: 0 0 0 $focus-width $color_shade_blue-35;
+       box-shadow: 0 0 0 $focus-width $focus-color;
      }
    }
  
@@ -224,52 +167,15 @@
  
  .header__navigation {
    @include print-hide();
-   background-color: $color_white;
    clear: both;
    display: none;
    overflow: hidden;
+   padding-top: 10px;
  
    &.js-show {
      display: block;
- 
-     @include mq($until: large-desktop) {
-       border-bottom: 4px solid $color_grey-5; /* [12] */
-       border-top: 4px solid $color_grey-5; /* [12] */
- 
-       .width-container {
-         margin: 0 spacing(3);
-       }
-     }
- 
-     @include mq($until: desktop) {
-       .width-container {
-         margin: 0;
-       }
-     }
    }
  
- }
- 
- .header__navigation-title {
-   font-weight: $font-bold;
-   margin-bottom: 0;
-   padding: spacing(3);
-   position: relative;
- }
- 
- .header__navigation-close {
-   @include close-button();
-   overflow: hidden;
-   position: absolute;
-   right: spacing(3);
-   top: spacing(2);
-   white-space: nowrap;
- 
-   &:focus {
-     .icon__close {
-       fill: $focus-text-color;
-     }
-   }
  }
  
  .header__navigation-list {
@@ -286,59 +192,15 @@
  
  .header__navigation-link {
    @include font(16);
-   border-bottom: 4px solid transparent;
-   border-top: 4px solid transparent;
    color: $color_blue;
    display: block;
-   padding: 12px spacing(3);
+   padding: 10px 0;
    text-decoration: none;
  
-   .icon__chevron-right {
-     fill: $color_grey-3;
-     position: absolute;
-     right: spacing(1);
-     top: 11px;
-   }
- 
-   &:visited {
-     @include mq($from: large-desktop) {
-       color: $color_white;
-     }
-   }
- 
    &:hover {
-     background-color: $color_shade_blue-35;
-     box-shadow: none;
-     color: $color_white;
      text-decoration: underline;
- 
-     .icon__chevron-right {
-       fill: $color_blue;
-     }
- 
    }
- 
-   &:active,
-   &:focus {
-     background-color: $focus-color;
-     border-bottom: $focus-width solid $focus-text-color;
-     box-shadow: none;
-     color: $focus-text-color;
-     outline: $focus-width solid transparent;
-     outline-offset: $focus-width;
-     text-decoration: none;
- 
-     &:hover {
-       background-color: $focus-color;
-       color: $focus-text-color;
-     }
- 
-     &:visited {
-       background-color: $focus-color;
-       color: $focus-text-color;
-     }
-   }
- 
+
  }
  
  /**
@@ -351,145 +213,30 @@
      display: none;
    }
  
-   .header__navigation-title {
-     display: none;
-   }
- 
-   .header__navigation-item--for-mobile {
-     display: none;
-   }
- 
    .header__navigation {
-     background-color: $color_blue;
+     clear: none;
+     float: right;
      display: block;
      margin: 0 auto;
+     padding: 0;
      max-width: $page-width;
    }
  
    .header__navigation-list {
-     border-top: 1px solid $secondary-border-color;
-     display: -ms-flexbox; /* [14] */
-     display: flex; // sass-lint:disable-line no-duplicate-properties
-     justify-content: space-between;
      padding: 0;
      width: 100%;
    }
  
-   .header__navigation-list--small {
-     justify-content: flex-start;
-   }
- 
    .header__navigation-item {
+     display: inline-block;
      border-top: 0;
      margin: 0;
      text-align: center;
- 
-     .icon__chevron-right {
-       display: none;
-     }
    }
- 
-   .header__navigation-link {
-     color: $color_white;
-     line-height: normal;
- 
-     &:active {
-       background-color: $color_shade_blue-50;
-       color: $color_grey-5;
-     }
- 
-     &:hover,
-     &:active,
-     &.is-active {
-       background-color: $color_shade_blue-20;
-     }
- 
-   }
- 
- }
- 
- /**
-  * Internet Explorer >= 9 specific styles
-  *
-  * The header component is the only component that
-  * supports earlier version of IE.
-  * This is because of the NHS branding, navigation
-  * and search prominence across the website.
- **/
- 
- 
- .ie8 {
- 
-   .header__link {
-     display: inline-block;
-     width: 100%;
-   }
- 
-   .header__logo {
-     background-color: $color_blue;
-     display: block;
-     padding: spacing(2) 0 spacing(2) spacing(2);
-     width: 100%;
-   }
- 
-   .header__menu-toggle,
-   .header__navigation-title,
-   .header__navigation-link .icon__chevron-right {
-     display: none;
-   }
- 
-   .header__navigation-list {
-     display: table;
-   }
- 
-   .header__navigation-item {
-     display: table-cell; /* [15] */
- 
-     a {
-       &:hover {
-         color: $color_blue;
-       }
-     }
-   }
- 
-   .header__navigation {
-     display: block;
-   }
- 
- }
- 
- .ie9 {
- 
-   @include mq($from: large-desktop) {
- 
-     .header__navigation-list {
-       display: table;
-     }
- 
-     .header__navigation-item {
-       display: table-cell;
-     }
- 
-   }
- 
- }
- 
 
- .header__logo--only {
-   max-width: 100%;
- 
-   @include mq($from: tablet) {
- 
-     .header__link--service {
-       -ms-flex-align: center;
-       align-items: center;
-       display: flex;
-       margin-bottom: 0;
-       width: auto;
-     }
- 
-     .header__service-name {
-       padding-left: spacing(3);
-     }
-   }
+   .header__navigation-link {
+      padding: 10px spacing(3);
+    }
+
  }
+ 
