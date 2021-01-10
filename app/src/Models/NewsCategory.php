@@ -13,7 +13,7 @@ class NewsCategory extends DataObject {
   ];
 
   private static $has_one = [
-    'ArticleHolder' => NewsHolder::class,
+    'ArticleHolder' => NewsHolderPage::class,
   ];
 
   private static $belongs_many_many = [

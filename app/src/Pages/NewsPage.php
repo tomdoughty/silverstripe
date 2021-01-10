@@ -14,15 +14,15 @@ class NewsPage extends Page
 	private static $db = [
 		'Date' => 'Date',
 		'Teaser' => 'Text',
-		'Author' => 'Varchar',
+		'BlogAuthor' => 'Text'
 	];
 
   private static $has_one = [
-  'Image' => Image::class,
+    'Image' => Image::class
   ];
 
   private static $many_many = [
-    'Categories' => NewsCategory::class,
+    'Categories' => NewsCategory::class
   ];
 
   private static $owns = [
@@ -32,16 +32,21 @@ class NewsPage extends Page
 	public function getCMSFields()
 	{
 		$fields = parent::getCMSFields();
-		$fields->addFieldToTab('Root.Main', DateField::create('Date','Date of article'), 'Content');
-		$fields->addFieldToTab('Root.Main', TextareaField::create('Teaser')
+    
+    $fields->addFieldToTab('Root.Main', DateField::create('Date', 'Date of article'), 'Content');
+    
+    $fields->addFieldToTab('Root.Main', TextareaField::create('Teaser')
 			->setDescription('This is the summary that appears on the article list page.'),
 			'Content'
-		);
-		$fields->addFieldToTab('Root.Main', TextField::create('Author','Author of article'),'Content');
+    );
+    
+    $fields->addFieldToTab('Root.Main', TextField::create('BlogAuthor', 'Author'), 'Content');
+    
 		$fields->addFieldToTab(
 			'Root.Attachments',
 			$image = UploadField::create('Image')
-		);
+    );
+    
 		$image->setFolderName('news');
 		
     $fields->addFieldToTab('Root.Categories', CheckboxSetField::create(
@@ -62,4 +67,25 @@ class NewsPage extends Page
     return null;
   }
 
+  public function PrevArticle() {
+    return NewsPage::get()
+      ->filter([
+        'ParentID' => $this->ParentID,
+        'Date:LessThan' => $this->Date
+      ])
+      ->sort('Date ASC')
+      ->limit('1')
+      ->first();
+  }
+
+  public function NextArticle() {
+    return NewsPage::get()
+      ->filter([
+        'ParentID' => $this->ParentID,
+        'Date:GreaterThan' => $this->Date
+      ])
+      ->sort('Date ASC')
+      ->limit('1')
+      ->first();
+  }
 }
