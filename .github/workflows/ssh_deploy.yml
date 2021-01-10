@@ -19,6 +19,7 @@ jobs:
           passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
           source: "./"
           target: "${{ secrets.REMOTE_DIR }}"
+          rm: true
 
       - name: Composer, build database and flush cache
         uses: garygrossgarten/github-action-ssh@release
