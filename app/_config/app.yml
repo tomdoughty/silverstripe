@@ -1,0 +1,13 @@
+---
+Name: myproject
+---
+SilverStripe\Core\Manifest\ModuleManifest:
+  project: app
+
+SilverStripe\CMS\Model\SiteTree:
+  extensions:
+    - SiteTree
+
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - SiteConfig

@@ -1,21 +1,27 @@
 <?php
 
-namespace {
+use SilverStripe\CMS\Controllers\ContentController;
 
-  use TomDoughty\Web\Models\Slide;
-  use SilverStripe\CMS\Controllers\ContentController;
+class PageController extends ContentController
+{
+  private static $allowed_actions = [];
 
-  class PageController extends ContentController
+  protected function init() 
   {
-    private static $allowed_actions = [];
-
-    protected function init() {
-        parent::init();
-    }
-
-    public function EnabledSlides() {
-      return $this->Slides()->filter('Display', true);
-    }
-
+      parent::init();
   }
+
+  public function Breadcrumbs()
+  {
+    if ($this->HideBreadcrumb() == true) 
+    {
+      return false;
+    }
+    if ($this->ParentID == 0) 
+    {
+      return HomePage::get();
+    }
+    return $this->getAncestors();
+  }
+
 }

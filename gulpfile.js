@@ -2,8 +2,9 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const cleanCss = require('gulp-clean-css');
 const webpack = require('webpack-stream');
+const path = require('path');
 
-const themeDir = './themes/tomdoughty';
+const themeDir = './public';
 
 // Compile SCSS
 function compileCSS() {
@@ -37,6 +38,11 @@ function compileJS() {
     },
     output: {
       filename: 'main.js',
+    },
+    resolve: {
+      alias: {
+        'node_modules': path.join(__dirname, 'node_modules'),
+      }
     },
     target: 'web',
   }))

@@ -1,9 +1,6 @@
 <?php
 
-namespace TomDoughty\Web\Models;
-
-use SilverStripe\CMS\Model\SiteTree;
-use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\DataObject;;
 use SilverStripe\Assets\Image;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Forms\FieldList;
@@ -20,13 +17,13 @@ class Slide extends DataObject {
   ];
   
   private static $has_one = [
-    'Page' => 'Page',
-    'Image' => Image::class,
+    'Page' => HomePage::class,
+    'Image' => Image::class
   ];
 
   private static $summary_fields = [
       'Image.CMSThumbnail' => 'Image',
-      'Display.Nice' => 'Enabled?',
+      'Display.Nice' => 'Enabled?'
   ];
 
   private static $defaults = [

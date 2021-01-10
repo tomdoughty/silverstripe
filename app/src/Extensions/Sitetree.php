@@ -1,7 +1,5 @@
 <?php
 
-namespace TomDoughty\Web\Extensions;
-
 use SilverStripe\Core\Convert;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
@@ -80,5 +78,9 @@ class SiteTree extends DataExtension
 
   public function MetaDescription() {
     return ($this->owner->MetaDescription) ? $this->owner->MetaDescription : $this->owner->GetDefaultDescription();
+  }
+
+  public function HideBreadcrumb() {
+    return false;
   }
 }

@@ -19,6 +19,7 @@
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-sass": "^4.1.0",
+    "nhsuk-frontend": "^4.0.0",
     "sass-mq": "^5.0.1",
     "webpack-stream": "^6.1.0"
   }
