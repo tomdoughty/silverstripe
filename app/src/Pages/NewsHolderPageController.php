@@ -41,11 +41,11 @@ class NewsHolderPageController extends PageController
     ];
   }
 
-  public function PaginatedArticles ($num = 10)
+  public function PaginatedArticles ()
   {
     return PaginatedList::create(
       $this->articleList,
       $this->getRequest()
-    )->setPageLength($num);
+    )->setPageLength(2);
   }
 }

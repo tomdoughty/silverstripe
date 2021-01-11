@@ -16,7 +16,9 @@ class HomePageController extends PageController
 
   public function LatestNews($count = 2)
   {
-    return NewsPage::get()->Limit($count);
+    return NewsPage::get()
+      ->sort('Date DESC')
+      ->Limit($count);
   }
 
 }

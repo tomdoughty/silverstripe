@@ -9,6 +9,10 @@
 
   <title><% if $MetaTitle %>$MetaTitle<% else %>$Title<% end_if %> - $SiteConfig.Title</title>
   
+  <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin>
+  <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" rel="preload" as="font" crossorigin>
+  <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-65Bold.woff2" rel="preload" as="font" crossorigin>
+
   <link rel="stylesheet" type="text/css" href="/css/main.css" />
 
   <link rel="shortcut icon" href="/images/favicon.ico" />

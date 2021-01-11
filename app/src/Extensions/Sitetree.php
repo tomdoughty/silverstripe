@@ -68,10 +68,7 @@ class SiteTree extends DataExtension
           ->setFolderName('Share images')
           ->setAllowedFileCategories('image')
           ->setAllowedMaxFileNumber(1)
-          ->setDescription('<a href="https://developers.facebook.com/docs/sharing/best-practices#images" target="_blank">Optimum image ratio</a>&nbsp;is 1.91:1. (1200px wide by 650px tall or better)'),
-        TextareaField::create('MetaKeywords', 'Keywords')->setRows(3),
-        TextField::create('MetaRobots', 'Robots'),
-        TextareaField::create('ExtraMeta', 'Custom Meta Tags')->setRows(3)
+          ->setDescription('<a href="https://developers.facebook.com/docs/sharing/best-practices#images" target="_blank">Optimum image ratio</a>&nbsp;is 1.91:1. (1200px wide by 650px tall or better)')
       ))->setHeadingLevel(4)
     );
   }
