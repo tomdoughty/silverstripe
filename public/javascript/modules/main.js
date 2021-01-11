@@ -6,7 +6,8 @@ import Card from 'node_modules/nhsuk-frontend/packages/components/card/card';
 import Details from 'node_modules/nhsuk-frontend/packages/components/details/details';
 
 // Custom JavaScript modules
-import enhanceFormValidation from './enhanceFormValidation';
+import EnhanceFormValidation from './enhanceFormValidation';
+import HeaderAutoComplete from './headerAutoComplete';
 
 // Polyfills
 import 'node_modules/nhsuk-frontend/packages/polyfills';
@@ -16,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   SkipLink();
   MenuToggle();
   SearchToggle();
+  HeaderAutoComplete();
   Card();
   Details();
-  enhanceFormValidation();
+  EnhanceFormValidation();
 });

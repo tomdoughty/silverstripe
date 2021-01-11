@@ -1,9 +1,5 @@
 <?php
 
-use SilverStripe\CMS\Model\SiteTree;
-use SilverStripe\Control\HTTPRequest;
-use SilverStripe\View\ArrayData;
-
 class HomePageController extends PageController
 {
   private static $allowed_actions = [

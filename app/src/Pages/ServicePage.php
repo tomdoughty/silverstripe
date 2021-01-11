@@ -2,5 +2,4 @@
 
 class ServicePage extends Page 
 {
-  
 }
