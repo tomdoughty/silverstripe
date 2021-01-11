@@ -1,9 +1,9 @@
 // Modules from NHS.UK frontend
-import Header from 'node_modules/nhsuk-frontend/packages/components/header/header';
 import SkipLink from 'node_modules/nhsuk-frontend/packages/components/skip-link/skip-link';
+import MenuToggle from 'node_modules/nhsuk-frontend/packages/components/header/menuToggle';
+import SearchToggle from 'node_modules/nhsuk-frontend/packages/components/header/searchToggle';
+import Card from 'node_modules/nhsuk-frontend/packages/components/card/card';
 import Details from 'node_modules/nhsuk-frontend/packages/components/details/details';
-import Radios from 'node_modules/nhsuk-frontend/packages/components/radios/radios';
-import Checkboxes from 'node_modules/nhsuk-frontend/packages/components/checkboxes/checkboxes';
 
 // Custom JavaScript modules
 import enhanceFormValidation from './enhanceFormValidation';
@@ -13,10 +13,10 @@ import 'node_modules/nhsuk-frontend/packages/polyfills';
 
 // Initialize modules on page load
 document.addEventListener('DOMContentLoaded', () => {
-  Details();
-  Header();
   SkipLink();
-  Radios();
-  Checkboxes();
+  MenuToggle();
+  SearchToggle();
+  Card();
+  Details();
   enhanceFormValidation();
 });

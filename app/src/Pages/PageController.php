@@ -1,6 +1,7 @@
 <?php
 
 use SilverStripe\CMS\Controllers\ContentController;
+use SilverStripe\ORM\ArrayList;
 
 class PageController extends ContentController
 {
@@ -13,15 +14,17 @@ class PageController extends ContentController
 
   public function Breadcrumbs()
   {
-    if ($this->HideBreadcrumb() == true) 
+    $breadcrumbs = ArrayList::create();
+    
+    if ($this->HideBreadcrumb() == false) 
     {
-      return false;
+      $breadcrumbs->push(HomePage::get()->First());
+    
+      foreach ($this->getAncestors() as $ancestor) {
+        $breadcrumbs->push($ancestor);
+      }
     }
-    if ($this->ParentID == 0) 
-    {
-      return HomePage::get();
-    }
-    return $this->getAncestors();
-  }
 
+    return $breadcrumbs;
+  }
 }

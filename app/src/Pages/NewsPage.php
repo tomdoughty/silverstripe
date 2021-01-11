@@ -73,7 +73,7 @@ class NewsPage extends Page
         'ParentID' => $this->ParentID,
         'Date:LessThan' => $this->Date
       ])
-      ->sort('Date ASC')
+      ->sort('Date DESC')
       ->limit('1')
       ->first();
   }

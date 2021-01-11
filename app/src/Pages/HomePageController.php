@@ -11,7 +11,12 @@ class HomePageController extends PageController
 
   public function EnabledSlides()
   {
-    return $this->Slides()->filter('Display', true);
+    return $this->HomepageSlides()->filter('Display', true);
+  }
+
+  public function LatestNews($count = 2)
+  {
+    return NewsPage::get()->Limit($count);
   }
 
 }

@@ -8,7 +8,7 @@
           </li>
         <% end_loop %>
       </ol>
-      <p class="nhsuk-breadcrumb__back"><a class="nhsuk-breadcrumb__backlink" href="$Breadcrumbs.First.Link">Back to $Breadcrumbs.First.Title</a></p>
+      <p class="nhsuk-breadcrumb__back"><a class="nhsuk-breadcrumb__backlink" href="$Breadcrumbs.Last.Link">Back to $Breadcrumbs.Last.Title</a></p>
     </div>
   </nav>
 <% end_if %>

@@ -8,7 +8,7 @@
             <% loop $PaginatedArticles %>
               <li class="nhsuk-u-padding-bottom-4 nhsuk-u-margin-bottom-4">
                 <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-4"><a href="$Link">$Title</a></h2>
-                <p class="nhsuk-body-s nhsuk-u-margin-bottom-3">$BlogAuthor, $Date.Format("d MMMM yyyy") - $CategoriesList</p>
+                <p class="nhsuk-body-s nhsuk-u-margin-bottom-3"><% if $BlogAuthor %>$BlogAuthor, <% end_if %>$Date.Format("d MMMM yyyy")<% if $CategoriesList %> - $CategoriesList<% end_if %></p>
                 <img src="$Image.URL" class="nhsuk-image__img nhsuk-u-margin-bottom-3" />
                 <p class="nhsuk-u-margin-bottom-4">$Content.LimitWordCount(40)</p>
                 <a href="$Link" class="nhsuk-u-margin-bottom-0 nhsuk-body-s">Read more<span class="nhsuk-u-visually-hidden">of $Title</span></a>

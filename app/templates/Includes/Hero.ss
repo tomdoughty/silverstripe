@@ -16,8 +16,8 @@
       <div class="nhsuk-grid-row">
         <div class="nhsuk-grid-column-two-thirds">
           <div class="nhsuk-hero-content">
-            <h1 class="nhsuk-u-margin-bottom-3">$Title</h1>
-            <p class="nhsuk-body-l nhsuk-u-margin-bottom-0">Helping you take control of your health and wellbeing.</p>
+            <h1 class="nhsuk-u-margin-bottom-3">$BannerTitle</h1>
+            <p class="nhsuk-body-l nhsuk-u-margin-bottom-0">$BannerContent</p>
             <span class="nhsuk-hero__arrow" aria-hidden="true"></span>
           </div>
         </div>

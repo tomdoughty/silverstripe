@@ -7,9 +7,9 @@ use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\CheckboxSetField;
 use SilverStripe\Forms\RequiredFields;
 
-class Slide extends DataObject {
+class HomepageSlide extends DataObject {
   
-  private static $table_name = 'Slide';
+  private static $table_name = 'HomepageSlide';
 
   private static $db = [
     'Display' => 'Boolean',

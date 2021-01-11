@@ -37,4 +37,14 @@ class SearchPageController extends PageController
   {
     return $this->request->getVar('Query');
   }
+
+  public function OneLess($num)
+  {
+    return $num - 1;
+  }
+
+  public function OneMore($num)
+  {
+    return $num + 1;
+  }
 }
