@@ -56,7 +56,7 @@
       <% loop $LatestNews %>
         <div class="nhsuk-grid-column-one-half nhsuk-section__content nhsuk-card-group__item">
           <div class="nhsuk-card nhsuk-card--clickable">
-            <img class="nhsuk-card__img" src="$Image.URL" alt="">
+            <img class="nhsuk-card__img" src="$Image.Fill(720,400).URL" alt="">
             <div class="nhsuk-card__content">
               <h2 class="nhsuk-card__heading nhsuk-heading-m"><a href="$Link">$Title</a></h2>
             </div>

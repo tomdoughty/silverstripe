@@ -4,7 +4,7 @@
       <div class="nhsuk-u-reading-width">
         <h1>$Title</h1>
         <p class="nhsuk-body-s nhsuk-u-margin-bottom-3"><% if $BlogAuthor %>$BlogAuthor, <% end_if %>$Date.Format("d MMMM yyyy")<% if $CategoriesList %> - $CategoriesList<% end_if %></p>
-        <img src="$Image.URL" class="nhsuk-image__img nhsuk-u-margin-bottom-3" />
+        <img src="$Image.ScaleMaxWidth(720).URL" class="nhsuk-image__img nhsuk-u-margin-bottom-3" />
         $Content
         <nav class="nhsuk-pagination" role="navigation" aria-label="Pagination">
           <ul class="nhsuk-list nhsuk-pagination__list">
