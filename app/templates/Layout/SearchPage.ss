@@ -4,11 +4,10 @@
       <div class="nhsuk-u-reading-width">
         <h1>Search results for $Query</h1>
         
-        <form id="search" action="/search/" method="get">
+        <form action="/search/" method="get">
           <div class="nhsuk-form-group  nhsuk-header__search-form--search-results">
-            <label class="nhsuk-label nhsuk-u-visually-hidden" for="search-field">Enter a search term</label>
-            <input class="nhsuk-input nhsuk-search__input" type="search" name="Query" autocomplete="off" id="search-field" value="$Query">
-            <input type="hidden" id="page" name="Page" value="1">
+            <label class="nhsuk-label nhsuk-u-visually-hidden" for="search-field-large">Enter a search term</label>
+            <input class="nhsuk-input nhsuk-search__input" type="search" name="Query" autocomplete="off" id="search-field-large" value="$Query">
             <button class="nhsuk-search__submit" type="submit">
               <span class="nhsuk-u-visually-hidden">
                 Submit

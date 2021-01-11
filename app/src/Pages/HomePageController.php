@@ -1,8 +1,14 @@
 <?php
 
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\View\ArrayData;
+
 class HomePageController extends PageController
 {
-  private static $allowed_actions = [];
+  private static $allowed_actions = [
+    'sitemap'
+  ];
 
   protected function init()
   {
@@ -21,4 +27,18 @@ class HomePageController extends PageController
       ->Limit($count);
   }
 
+  public function sitemap(HTTPRequest $request) {
+    $this->response->addHeader('Content-Type', 'application/json');    
+  
+    $array = [];
+
+    foreach (Page::get() as $page) {
+      array_push($array, $page->AbsoluteLink());
+    }
+    
+    $associativeArray = [];
+    $associativeArray ['urls'] = $array;
+    
+    return json_encode($associativeArray);
+  }
 }

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "pa11y": "pa11y-ci --config ./pa11y/config"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
     "nhsuk-frontend": "^4.0.0",
     "sass-mq": "^5.0.1",
     "webpack-stream": "^6.1.0"
+  },
+  "devDependencies": {
+    "pa11y-ci": "^2.4.0"
   }
 }
