@@ -4,7 +4,7 @@
       <div class="nhsuk-u-reading-width">
         <h1>$Title</h1>
         <p class="nhsuk-body-s nhsuk-u-margin-bottom-3"><% if $BlogAuthor %>$BlogAuthor, <% end_if %>$Date.Format("d MMMM yyyy")<% if $CategoriesList %> - $CategoriesList<% end_if %></p>
-        <img src="$Image.ScaleMaxWidth(720).URL" class="nhsuk-image__img nhsuk-u-margin-bottom-3" />
+        <img src="$Image.ScaleMaxWidth(720).URL" alt="" class="nhsuk-image__img nhsuk-u-margin-bottom-5" />
         $Content
         <nav class="nhsuk-pagination" role="navigation" aria-label="Pagination">
           <ul class="nhsuk-list nhsuk-pagination__list">
@@ -40,16 +40,16 @@
           <h3>Share this page</h3>
           <ul>
             <li>
-              <a target="_blank" href="https://twitter.com/intent/tweet?original_referer&amp;url=$AbsoluteLink.URLATT&amp;text=$Title.URLATT" class="twitter">Twitter</a>
+              <a target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?original_referer&amp;url=$AbsoluteLink.URLATT&amp;text=$Title.URLATT">Twitter</a>
             </li>
             <li>
-              <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=$AbsoluteLink.URLATT" class="facebook">Facebook</a>
+              <a target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=$AbsoluteLink.URLATT">Facebook</a>
             </li>
             <li>
-              <a target="_blank" href="https://www.linkedin.com/shareArticle?url=$AbsoluteLink.URLATT" class="linkedin">LinkedIn</a>
+              <a target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?url=$AbsoluteLink.URLATT">LinkedIn</a>
             </li>
             <li>
-              <a href="mailto:?subject=I wanted to share this post with you from $SiteConfig.Title&amp;body=$Title $AbsoluteLink" class="email">Email</a>
+              <a rel="noopener" href="mailto:?subject=I wanted to share this post with you from $SiteConfig.Title&amp;body=$Title $AbsoluteLink">Email</a>
             </li>
           </ul>
         </div>
