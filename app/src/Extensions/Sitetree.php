@@ -7,6 +7,8 @@ use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\ToggleCompositeField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\TextAreaField;
+use SilverStripe\Forms\FieldGroup;
+use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\Connect\MySQLSchemaManager;
 use SilverStripe\ORM\DataExtension;
 
@@ -43,6 +45,14 @@ class SiteTree extends DataExtension
     $fields->removeByName('MetaRobots');
     $fields->removeByName('ExtraMeta');
     $fields->removeByName('Metadata');
+    
+    $fields->addFieldToTab(
+      'Root.Main',
+      FieldGroup::create(
+        LiteralField::create('Wave audit', sprintf('<a href="https://wave.webaim.org/report#/%s" target="_blank" style="display: inline-block; padding-top: .5385rem">Run Wave accessibility audit for this page</a>', $this->owner->AbsoluteLink()))
+      )->setTitle('Wave audit'),
+      'MenuTitle'
+    );
 
     $fields->addFieldToTab(
       'Root.Main',
