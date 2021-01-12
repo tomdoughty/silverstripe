@@ -55,14 +55,6 @@ class NewsPage extends Page
 		return $fields;
 	}
 
-  public function CategoriesList()
-  {
-    if($this->Categories()->exists()) {
-      return implode(', ', $this->Categories()->column('Title'));
-    }
-    return null;
-  }
-
   public function PrevArticle() {
     return NewsPage::get()
       ->filter([

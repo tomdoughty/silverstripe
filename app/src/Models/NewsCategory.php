@@ -33,4 +33,9 @@ class NewsCategory extends DataObject {
       'category/'.$this->ID
     );
   }
+
+  public function ArticleCount()
+  {
+    return $this->Articles()->Count();
+  }
 }
