@@ -6,6 +6,7 @@ use SilverStripe\ORM\ArrayList;
 class PageController extends ContentController
 {
   private static $allowed_actions = [];
+  private static $hide_breadcrumbs = true;
 
   protected function init() 
   {
@@ -16,7 +17,7 @@ class PageController extends ContentController
   {
     $breadcrumbs = ArrayList::create();
     
-    if ($this->HideBreadcrumb() == false) 
+    if ($this->ClassName != 'HomePage') 
     {
       $breadcrumbs->push(HomePage::get()->First());
     

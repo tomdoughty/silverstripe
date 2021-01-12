@@ -16,7 +16,7 @@
       @include mq($from: tablet) {
         padding-top: nhsuk-spacing(6);
       }
-      // A fix for the spacing below the hero
+      
       @include mq($until: 421px) {
         padding-top: nhsuk-spacing(6);
       }
@@ -52,14 +52,10 @@
   color: $nhsuk-secondary-text-color;
 }
 
-// Action link - adding a top margin for homepage sections
 .nhsuk-homepage .nhsuk-section__content .nhsuk-action-link {
   padding-top: nhsuk-spacing(2);
 }
 
-// +++++++++++++++++++++++
-// THE CROSSES +++++++++++
-// +++++++++++++++++++++++
 .nhsuk-section--with-image {
   position: relative;
 
@@ -91,7 +87,6 @@
   }
 }
 
-// List signage
 .nhsuk-list-signage {
   list-style: none;
   padding-left: 0;
@@ -165,7 +160,6 @@
   }
 }
 
-// List app
 .nhsuk-list-apps {
   padding: 0;
 }
@@ -261,8 +255,6 @@
     column-gap: 32px;
   }
 }
-
-// Grey promo variant
 
 .app-promo--grey a {
   background: #f0f4f5;

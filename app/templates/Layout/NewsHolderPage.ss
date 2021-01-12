@@ -1,57 +1,41 @@
 <div class="nhsuk-width-container">
   <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-full">
-      <div class="nhsuk-u-reading-width">
-        <h1>$Title</h1>
-        <% if $PaginatedArticles %>
-          <ul class="nhsuk-list nhsuk-list--border nhsuk-u-padding-top-4 ">
-            <% loop $PaginatedArticles %>
-              <li class="nhsuk-u-padding-bottom-4 nhsuk-u-margin-bottom-4">
-                <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-4"><a href="$Link">$Title</a></h2>
-                <p class="nhsuk-body-s nhsuk-u-margin-bottom-3"><% if $BlogAuthor %>$BlogAuthor, <% end_if %>$Date.Format("d MMMM yyyy")<% if $CategoriesList %> - $CategoriesList<% end_if %></p>
-                <img src="$Image.ScaleMaxWidth(720).URL" alt="" class="nhsuk-image__img nhsuk-u-margin-bottom-3" />
-                <p class="nhsuk-u-margin-bottom-4">$Content.LimitWordCount(40)</p>
-                <a href="$Link" class="nhsuk-u-margin-bottom-0 nhsuk-body-s">Read more<span class="nhsuk-u-visually-hidden">of $Title</span></a>
-              </li>
+    <div class="nhsuk-grid-column-two-thirds">
+      <h1>$Title</h1>
+      $SelectedCategory.Title
+      <% if $Results %>
+        <ul class="nhsuk-list nhsuk-list--border nhsuk-u-padding-top-4 ">
+          <% loop $Results %>
+            <li class="nhsuk-u-padding-bottom-4 nhsuk-u-margin-bottom-4">
+              <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-4"><a href="$Link">$Title</a></h2>
+              <p class="nhsuk-body-s nhsuk-u-margin-bottom-3"><% if $BlogAuthor %>$BlogAuthor, <% end_if %>$Date.Format("d MMMM yyyy")<% if $CategoriesList %> - $CategoriesList<% end_if %></p>
+              <img src="$Image.ScaleMaxWidth(720).URL" alt="" class="nhsuk-image__img nhsuk-u-margin-bottom-3" />
+              <p class="nhsuk-u-margin-bottom-4">$Content.LimitWordCount(40)</p>
+              <a href="$Link" class="nhsuk-u-margin-bottom-0 nhsuk-body-s">Read more<span class="nhsuk-u-visually-hidden">of $Title</span></a>
+            </li>
+          <% end_loop %>
+        </ul>
+        <% include Pagination %>
+      <% else %>
+        <h2>Sorry, there are no news items yet.</h2>
+      <% end_if %>
+    </div>
+    <div class="nhsuk-grid-column-one-third">
+      <div class="nhsuk-related-nav">
+        <h2 class="nhsuk-related-nav__heading">
+          Categories
+        </h2>
+        <nav role="navigation" class="nhsuk-related-nav__nav-section">
+          <ul class="nhsuk-related-nav__list nhsuk-related-nav__list--sub">
+            <% loop $Categories %>
+              <li class="nhsuk-related-nav__item">
+                <a class="nhsuk-related-nav__link" href="$Link">
+                  $Title
+                </a>
+              </li> 
             <% end_loop %>
           </ul>
-        
-          <% if $PaginatedArticles.MoreThanOnePage %>
-            <nav class="nhsuk-pagination" role="navigation" aria-label="Pagination">
-              <ul class="nhsuk-list nhsuk-pagination__list">
-                <% if $PaginatedArticles.NotFirstPage %>
-                  <li class="nhsuk-pagination-item--previous">
-                    <a class="nhsuk-pagination__link nhsuk-pagination__link--prev" href="$PaginatedArticles.PrevLink">
-                      <span class="nhsuk-pagination__title">Previous</span>
-                      <span class="nhsuk-u-visually-hidden">:</span>
-                      <span class="nhsuk-pagination__page">$OneLess($PaginatedArticles.CurrentPage) of $PaginatedArticles.TotalPages</span>
-                      <svg class="nhsuk-icon nhsuk-icon__arrow-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M4.1 12.3l2.7 3c.2.2.5.2.7 0 .1-.1.1-.2.1-.3v-2h11c.6 0 1-.4 1-1s-.4-1-1-1h-11V9c0-.2-.1-.4-.3-.5h-.2c-.1 0-.3.1-.4.2l-2.7 3c0 .2 0 .4.1.6z">
-                        </path>
-                      </svg>
-                    </a>
-                  </li>
-                <% end_if %>
-                <% if $PaginatedArticles.NotLastPage %>
-                  <li class="nhsuk-pagination-item--next">
-                    <a class="nhsuk-pagination__link nhsuk-pagination__link--next" href="$PaginatedArticles.NextLink">
-                      <span class="nhsuk-pagination__title">Next</span>
-                      <span class="nhsuk-u-visually-hidden">:</span>
-                      <span class="nhsuk-pagination__page">$OneMore($PaginatedArticles.CurrentPage) of $PaginatedArticles.TotalPages</span>
-                      <svg class="nhsuk-icon nhsuk-icon__arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M19.6 11.66l-2.73-3A.51.51 0 0 0 16 9v2H5a1 1 0 0 0 0 2h11v2a.5.5 0 0 0 .32.46.39.39 0 0 0 .18 0 .52.52 0 0 0 .37-.16l2.73-3a.5.5 0 0 0 0-.64z">
-                        </path>
-                      </svg>
-                    </a>
-                  </li>
-                <% end_if %>
-              </ul>
-            </nav>
-          <% end_if %>
-
-        <% else %>
-          <h2>Sorry, there are no news items yet.</h2>
-        <% end_if %>
+        </nav>
       </div>
     </div>
   </div>

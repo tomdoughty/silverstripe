@@ -10,7 +10,9 @@
           <p>$Message</p>
           <ul class="nhsuk-list nhsuk-error-summary__list">
             <% loop $Fields %>
-              <li><a href="#$ID">$Message</a></li>
+              <% if $Message %>
+                <li><a href="#$ID">$Message</a></li>
+              <% end_if %>
             <% end_loop %>
           </ul>
         </div>

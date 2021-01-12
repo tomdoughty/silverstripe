@@ -72,7 +72,11 @@ class SiteTree extends DataExtension
       ))->setHeadingLevel(4)
     );
   }
-  
+
+  public function MetaTitle() {
+    return $this->owner->MetaTitle ? $this->owner->MetaTitle : $this->owner->Title;
+  }
+
   public function GetDefaultDescription() {
     if ($this->owner->Content) {
       $description = trim($this->owner->obj('Content')->Summary(20, 5));
@@ -84,10 +88,6 @@ class SiteTree extends DataExtension
   }
 
   public function MetaDescription() {
-    return ($this->owner->MetaDescription) ? $this->owner->MetaDescription : $this->owner->GetDefaultDescription();
-  }
-
-  public function HideBreadcrumb() {
-    return false;
+    return $this->owner->MetaDescription ? $this->owner->MetaDescription : $this->owner->GetDefaultDescription();
   }
 }

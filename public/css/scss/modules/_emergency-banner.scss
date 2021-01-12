@@ -1,13 +1,4 @@
-/* ==========================================================================
-   COMPONENTS / #EMERGENCY-ALERT
-   ========================================================================== */
-
-/**
- * 1. Use inverted link colours due to the yellow
- *    ($color_nhsuk-yellow) background.
- */
-
- @mixin nhsuk-link-style-inverted {
+@mixin nhsuk-link-style-inverted {
 	color: $nhsuk-link-color;
   
 	&:focus {
@@ -38,7 +29,7 @@
 	padding-top: nhsuk-spacing(4);
 
 	a {
-		@include nhsuk-link-style-inverted; /* [1] */
+		@include nhsuk-link-style-inverted;
 	}
 }
 

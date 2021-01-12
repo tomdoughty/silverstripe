@@ -9,15 +9,15 @@ class NewsCategory extends DataObject {
   private static $table_name = 'NewsCategory';
 
   private static $db = [
-    'Title' => 'Varchar',
+    'Title' => 'Varchar'
   ];
 
   private static $has_one = [
-    'ArticleHolder' => NewsHolderPage::class,
+    'ArticleHolder' => NewsHolderPage::class
   ];
 
   private static $belongs_many_many = [
-    'Articles' => NewsPage::class,
+    'Articles' => NewsPage::class
   ];
 
   public function getCMSFields()

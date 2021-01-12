@@ -9,46 +9,48 @@ use SilverStripe\Control\HTTPRequest;
 class SearchPageController extends PageController
 {
   private static $allowed_actions = [
-    'json'
+    'json',
+    'print'
   ];
 
   private $results;
+  private $query;
 
-  private function setResults()
+  protected function init ()
   {
-    if (is_null($this->results)) {
-      $this->results = ArrayList::create();
-      if ($query = $this->request->getVar('Query')) {
-        $pages = SiteTree::get()->where(sprintf(
-          "MATCH (%s) AGAINST ('%s*' IN BOOLEAN MODE) AND " .
-          "ShowInSearch IS TRUE AND ClassName NOT IN ('RedirectorPage', 'VirtualPage')",
-          implode(",", singleton(SiteTree::class)->stat('indexes')['SearchFields']['columns']),
-          Convert::raw2sql($query)
-        ))->sort(sprintf(
-          "Title LIKE '%%%s%%' DESC, MATCH (%s) AGAINST ('%s*') DESC",
-          Convert::raw2sql($query),
-          implode(",", singleton(SiteTree::class)->stat('indexes')['SearchFields']['columns']),
-          Convert::raw2sql($query)
-        ));
+    parent::init();
 
-        $this->results = $pages;
-      }
-    }
+    $this->query = $this->request->getVar('Query');
+
+    $this->results = SiteTree::get()
+      ->where(sprintf(
+        "MATCH (%s) AGAINST ('%s*' IN BOOLEAN MODE) AND " .
+        "ShowInSearch IS TRUE AND ClassName NOT IN ('RedirectorPage', 'VirtualPage')",
+        implode(",", singleton(SiteTree::class)->stat('indexes')['SearchFields']['columns']),
+        Convert::raw2sql($this->query)
+      ))
+      ->sort(sprintf(
+        "Title LIKE '%%%s%%' DESC, MATCH (%s) AGAINST ('%s*') DESC",
+        Convert::raw2sql($this->query),
+        implode(",", singleton(SiteTree::class)->stat('indexes')['SearchFields']['columns']),
+        Convert::raw2sql($this->query)
+      ));
   }
 
+  public function Query() {
+    return $this->query;
+  }
+ 
   public function Results()
   {
-    $this->setResults();
-   
-    return PaginatedList::create($this->results, $this->getRequest())
-      ->setPageLength(2);;
+    return PaginatedList::create(
+      $this->results,
+      $this->getRequest()
+    )->setPageLength(2);
   }
 
-  public function json(HTTPRequest $request) {
-    $this->response->addHeader('Content-Type', 'application/json');    
-  
-    $this->setResults();
-    
+  public function json(HTTPRequest $request) {   
+   
     $suggestions = [];
 
     foreach ($this->results as $page) {
@@ -59,11 +61,7 @@ class SearchPageController extends PageController
       array_push($suggestions, $suggestion);
     }
     
+    $this->response->addHeader('Content-Type', 'application/json'); 
     return json_encode($suggestions);
-  }
-
-  public function Query()
-  {
-    return $this->request->getVar('Query');
   }
 }

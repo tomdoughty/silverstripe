@@ -17,11 +17,6 @@ class HomePage extends Page
     'HomepageSlides' => HomepageSlide::class
   ];
 
-  public function HideBreadcrumb()
-  {
-    return true;
-  }
-
   public function getCMSFields()
   {
     $fields = parent::getCMSFields();

@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="$MetaDescription">
+  <meta name="description" content="$MetaDescription()">
   <link rel="canonical" href="$AbsoluteLink">
 
-  <title><% if $MetaTitle %>$MetaTitle<% else %>$Title<% end_if %> - $SiteConfig.Title</title>
+  <title>$MetaTitle() - $SiteConfig.Title</title>
   
   <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin>
   <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" rel="preload" as="font" crossorigin>
@@ -28,8 +28,8 @@
 
   <meta property="og:url" content="$AbsoluteLink">
   <meta property="og:site_name" content="$SiteConfig.Title">
-  <meta property="og:title" content="$Title"/>
-  <meta property="og:description" content="$MetaDescription">
+  <meta property="og:title" content="$MetaTitle()"/>
+  <meta property="og:description" content="$MetaDescription()">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_GB">
   <meta property="og:image" content="$ShareImage.AbsoluteURL">

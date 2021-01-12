@@ -42,17 +42,14 @@ class NewsPage extends Page
     
     $fields->addFieldToTab('Root.Main', TextField::create('BlogAuthor', 'Author'), 'Content');
     
-		$fields->addFieldToTab(
-			'Root.Attachments',
-			$image = UploadField::create('Image')
+    $fields->addFieldToTab('Root.Attachments',  UploadField::create('Image')
+      ->setFolderName('news')
     );
     
-		$image->setFolderName('news');
-		
     $fields->addFieldToTab('Root.Categories', CheckboxSetField::create(
       'Categories',
       'Selected categories',
-      $this->Parent()->Categories()->map('ID','Title')
+      $this->Parent()->Categories()->map('ID', 'Title')
     ));
     
 		return $fields;
@@ -63,7 +60,6 @@ class NewsPage extends Page
     if($this->Categories()->exists()) {
       return implode(', ', $this->Categories()->column('Title'));
     }
-
     return null;
   }
 

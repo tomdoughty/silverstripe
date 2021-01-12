@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\Control\HTTPRequest;
+
 class HomePageController extends PageController
 {
   private static $allowed_actions = [

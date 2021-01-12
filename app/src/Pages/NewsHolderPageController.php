@@ -1,23 +1,25 @@
 <?php
 
+use SilverStripe\Control\RSS\RSSFeed;
 use SilverStripe\ORM\PaginatedList;
 use SilverStripe\Control\HTTPRequest;
-use SilverStripe\ORM\FieldType\DBField;
 
 class NewsHolderPageController extends PageController
 {
   private static $allowed_actions = [
     'category',
-    //'date'
+    'rss'
   ];
 
-  protected $articleList;
+  protected $results;
 
   protected function init ()
   {
     parent::init();
 
-    $this->articleList = NewsPage::get()->filter([
+    RSSFeed::linkToFeed($this->Link("rss"), "10 Most Recent News Articles");
+
+    $this->results = NewsPage::get()->filter([
       'ParentID' => $this->ID
     ])->sort('Date DESC');
   }
@@ -25,14 +27,14 @@ class NewsHolderPageController extends PageController
   public function category (HTTPRequest $request)
   {
     $category = NewsCategory::get()->byID(
-      $request->getvar('ID')
+      $request->param('ID')
     );
 
     if(!$category) {
       return $this->httpError(404);
     }
 
-    $this->articleList = $this->articleList->filter([
+    $this->results = $this->results->filter([
       'Categories.ID' => $category->ID
     ]);
 
@@ -41,11 +43,21 @@ class NewsHolderPageController extends PageController
     ];
   }
 
-  public function PaginatedArticles ()
+  public function rss() 
+  {
+    return RSSFeed::create(
+        $this->Results(10), 
+        $this->Link(), 
+        "10 Most Recent News Articles", 
+        "Shows a list of the most recent news articles."
+    )->outputToBrowser();
+  }
+
+  public function Results ($pages = 2)
   {
     return PaginatedList::create(
-      $this->articleList,
+      $this->results,
       $this->getRequest()
-    )->setPageLength(2);
+    )->setPageLength($pages);
   }
 }

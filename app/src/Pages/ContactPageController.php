@@ -42,7 +42,7 @@ class ContactPageController extends PageController
   }
 
   public function Submit($data, $form) 
-  { 
+  {
     $formValidator = new FormValidator();
     $validationResult = $formValidator->Validate($data, $form, [
       'Name' => [
