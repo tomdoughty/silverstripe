@@ -22,7 +22,9 @@ class SearchPageController extends PageController
 
     $this->query = $this->request->getVar('Query');
 
-    $this->results = SiteTree::get()
+    $results = ArrayList::create();
+
+    $pages = SiteTree::get()
       ->where(sprintf(
         "MATCH (%s) AGAINST ('%s*' IN BOOLEAN MODE) AND " .
         "ShowInSearch IS TRUE AND ClassName NOT IN ('RedirectorPage', 'VirtualPage')",
@@ -34,7 +36,28 @@ class SearchPageController extends PageController
         Convert::raw2sql($this->query),
         implode(",", singleton(SiteTree::class)->stat('indexes')['SearchFields']['columns']),
         Convert::raw2sql($this->query)
-      ));
+      ))->limit(30);
+    
+    $consultants = Consultant::get()
+      ->where(sprintf(
+        "MATCH (%s) AGAINST ('%s*' IN BOOLEAN MODE)",
+        implode(",", singleton(Consultant::class)->stat('indexes')['SearchFields']['columns']),
+        Convert::raw2sql($this->query)
+      ))->sort(sprintf(
+        "LastName LIKE '%%%s%%' DESC, MATCH (%s) AGAINST ('%s*') DESC",
+        Convert::raw2sql($this->query),
+        implode(",", singleton(Consultant::class)->stat('indexes')['SearchFields']['columns']),
+        Convert::raw2sql($this->query)
+      ))->limit(30);
+
+    foreach ($pages as $page) {
+        $results->push(SearchResultViewModel::create($page));
+    }
+    foreach ($consultants as $consultant) {
+        $results->push(SearchResultViewModel::create($consultant));
+    }
+
+    $this->results = $results->sort(['TitleRelevance DESC', 'Relevance DESC'])->limit(30);
   }
 
   public function Query() {
@@ -56,7 +79,7 @@ class SearchPageController extends PageController
     foreach ($this->results as $page) {
       $suggestion = [];
       $suggestion['Title'] = $page->Title;
-      $suggestion['Link'] = $page->Link();
+      $suggestion['Link'] = $page->Link;
 
       array_push($suggestions, $suggestion);
     }

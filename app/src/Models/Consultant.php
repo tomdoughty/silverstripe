@@ -3,6 +3,7 @@
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Assets\Image;
+use SilverStripe\Control\Director;
 
 class Consultant extends DataObject {
 
@@ -29,6 +30,15 @@ class Consultant extends DataObject {
   private static $owns = ['Image'];
   
   private static $default_sort = 'LastName ASC, FirstName ASC';
+
+  private static $indexes = [
+    'SearchFields' => [
+      'type' => 'fulltext',
+      'columns' => [
+        'Honorific', 'FirstName', 'LastName', 'Message'
+      ],
+    ],
+  ];
     
   public static function FormSlug($value, $separator = '-')
   {
@@ -50,6 +60,29 @@ class Consultant extends DataObject {
       }
     }
     return implode(' ', $names);
+  }
+
+  public function Title()
+  {
+    return $this->Name();
+  }
+
+  public function Link()
+  {
+    $page = ConsultantsPage::get()->first();
+    if (!is_null($page)) {
+      return $page->Link($this->Slug);
+    }
+    return null;
+  }
+
+  public function AbsoluteLink()
+  {
+    $link = $this->Link();
+    if (!is_null($link)) {
+      return Director::absoluteURL($link);
+    }
+    return null;
   }
 
   public function onBeforeWrite()
