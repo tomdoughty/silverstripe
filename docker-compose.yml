@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  silverstripe:
+    image: brettt89/silverstripe-web:7.4-apache
+    ports:
+      - 8080:80
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - database
+
+  database:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - db-data:/var/lib/mysql
+volumes:
+  db-data:
