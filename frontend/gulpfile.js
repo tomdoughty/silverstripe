@@ -4,23 +4,21 @@ const cleanCss = require('gulp-clean-css');
 const webpack = require('webpack-stream');
 const path = require('path');
 
-const themeDir = './public';
-
 // Compile SCSS
 function compileCSS() {
   return gulp.src([
-    `${themeDir}/css/scss/main.scss`,
+    './scss/main.scss',
   ])
   .pipe(sass())
   .on('error', sass.logError)
   .pipe(cleanCss())
-  .pipe(gulp.dest(`${themeDir}/css/`));
+  .pipe(gulp.dest('../public/css/'));
 }
 
 // Compile JS
 function compileJS() {
   return gulp.src([
-    `${themeDir}/javascript/modules/main.js`,
+    './javascript/main.js',
   ])
   .pipe(webpack({
     mode: 'production',
@@ -46,7 +44,7 @@ function compileJS() {
     },
     target: 'web',
   }))
-  .pipe(gulp.dest(`${themeDir}/javascript/`));
+  .pipe(gulp.dest('../public/javascript/'));
 }
 
 gulp.task('default', () => {
@@ -56,8 +54,17 @@ gulp.task('default', () => {
   compileJS();
 
   // Watch src CSS and recompile dist
-  gulp.watch(`${themeDir}/css/scss/**/*.scss`, gulp.series([compileCSS]));
+  gulp.watch('./scss/**/*.scss', gulp.series([compileCSS]));
 
   // Watch src JS and recompile dist
-  gulp.watch(`${themeDir}/javascript/modules/**/*.js`, gulp.series([compileJS]));
+  gulp.watch('./javascript/**/*.js', gulp.series([compileJS]));
+});
+
+gulp.task('build', (done) => {
+  // Compile CSS
+  compileCSS();
+  // Compile JS
+  compileJS();
+  // Exit
+  done();
 });

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "gulp": "gulp",
-    "pa11y": "pa11y-ci --config ./pa11y/config"
+    "dev": "gulp",
+    "build": "gulp build",
+    "pa11y": "pa11y-ci --config ../tests/accessibility/pa11y"
   },
   "repository": {
     "type": "git",

@@ -46,24 +46,24 @@
     </div>
   </div>
 </section>
-
-<section class="nhsuk-section">
-  <div class="nhsuk-width-container">
-    <div class="nhsuk-grid-row nhsuk-card-group nhsuk-u-margin-bottom-0">
-      <div class="nhsuk-grid-column-full nhsuk-section__content nhsuk-u-padding-bottom-0">
-        <h2>Latest news</h2>
-      </div>
-      <% loop $LatestNews %>
-        <div class="nhsuk-grid-column-one-half nhsuk-section__content nhsuk-card-group__item">
-          <div class="nhsuk-card nhsuk-card--clickable">
-            <img class="nhsuk-card__img" src="$Image.Fill(720,400).URL" alt="">
-            <div class="nhsuk-card__content">
-              <h2 class="nhsuk-card__heading nhsuk-heading-m"><a href="$Link">$Title</a></h2>
+<% if $LatestNews %>
+  <section class="nhsuk-section">
+    <div class="nhsuk-width-container">
+      <div class="nhsuk-grid-row nhsuk-card-group nhsuk-u-margin-bottom-0">
+        <div class="nhsuk-grid-column-full nhsuk-section__content nhsuk-u-padding-bottom-0">
+          <h2>Latest news</h2>
+        </div>
+        <% loop $LatestNews %>
+          <div class="nhsuk-grid-column-one-half nhsuk-section__content nhsuk-card-group__item">
+            <div class="nhsuk-card nhsuk-card--clickable">
+              <img class="nhsuk-card__img" src="$Image.Fill(720,400).URL" alt="">
+              <div class="nhsuk-card__content">
+                <h2 class="nhsuk-card__heading nhsuk-heading-m"><a href="$Link">$Title</a></h2>
+              </div>
             </div>
           </div>
-        </div>
-      <% end_loop %>
-    <div>
-  </div>
-</div>
-</section>
+        <% end_loop %>
+      <div>
+    </div>
+  </section>
+<% end_if %>

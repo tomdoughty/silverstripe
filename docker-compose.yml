@@ -1,5 +1,25 @@
 version: "3.8"
+
+volumes:
+  db-data:
+
 services:
+  
+  database:
+    image: mysql:5.7
+    volumes:
+      - db-data:/var/lib/mysql
+
+  frontend:
+    build:
+      context: .
+      target: frontend
+    command: npm run dev
+    volumes:
+      - ./frontend:/node/frontend
+      - ./public:/node/public
+      - /node/frontend/node_modules
+
   silverstripe:
     image: brettt89/silverstripe-web:7.4-apache
     ports:
@@ -8,12 +28,3 @@ services:
       - .:/var/www/html
     depends_on:
       - database
-
-  database:
-    image: mysql:5.7
-    environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-    volumes:
-      - db-data:/var/lib/mysql
-volumes:
-  db-data:
