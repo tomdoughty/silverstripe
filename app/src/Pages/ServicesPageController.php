@@ -5,16 +5,16 @@ use SilverStripe\View\ArrayData;
 
 class ServicesPageController extends PageController
 {
-  protected function init() {
-      parent::init();
+  protected function init()
+  {
+    parent::init();
   }
 
   public function Services()
   {
     $services = [];
 
-    foreach (range('A', 'Z') as $letter) 
-    {
+    foreach (range('A', 'Z') as $letter) {
       $pagesByLetter = ServicePage::get()->filter([
         'Title:StartsWith' => $letter
       ]);

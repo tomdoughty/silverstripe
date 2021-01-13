@@ -1,9 +1,9 @@
 <?php
 
-use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\ORM\DataObject;
 
-class Contact extends DataObject {
+class Contact extends DataObject
+{
 
   private static $table_name = 'Contact';
 
@@ -13,7 +13,7 @@ class Contact extends DataObject {
     'Message' => 'Text',
     'SortOrder' => 'Int'
   ];
-  
+
   private static $summary_fields = [
     'Name',
     'Email'
@@ -22,6 +22,6 @@ class Contact extends DataObject {
   private static $indexes = [
     'SortOrder' => true,
   ];
-  
+
   private static $default_sort = 'SortOrder';
 }

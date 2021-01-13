@@ -4,7 +4,6 @@ use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Core\Convert;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\PaginatedList;
-use SilverStripe\Control\HTTPRequest;
 
 class SearchPageController extends PageController
 {
@@ -16,7 +15,7 @@ class SearchPageController extends PageController
   private $results;
   private $query;
 
-  protected function init ()
+  protected function init()
   {
     parent::init();
 
@@ -27,7 +26,7 @@ class SearchPageController extends PageController
     $pages = SiteTree::get()
       ->where(sprintf(
         "MATCH (%s) AGAINST ('%s*' IN BOOLEAN MODE) AND " .
-        "ShowInSearch IS TRUE AND ClassName NOT IN ('RedirectorPage', 'VirtualPage')",
+          "ShowInSearch IS TRUE AND ClassName NOT IN ('RedirectorPage', 'VirtualPage')",
         implode(",", singleton(SiteTree::class)->stat('indexes')['SearchFields']['columns']),
         Convert::raw2sql($this->query)
       ))
@@ -37,7 +36,7 @@ class SearchPageController extends PageController
         implode(",", singleton(SiteTree::class)->stat('indexes')['SearchFields']['columns']),
         Convert::raw2sql($this->query)
       ))->limit(30);
-    
+
     $consultants = Consultant::get()
       ->where(sprintf(
         "MATCH (%s) AGAINST ('%s*' IN BOOLEAN MODE)",
@@ -51,19 +50,20 @@ class SearchPageController extends PageController
       ))->limit(30);
 
     foreach ($pages as $page) {
-        $results->push(SearchResultViewModel::create($page));
+      $results->push(SearchResultViewModel::create($page));
     }
     foreach ($consultants as $consultant) {
-        $results->push(SearchResultViewModel::create($consultant));
+      $results->push(SearchResultViewModel::create($consultant));
     }
 
     $this->results = $results->sort(['TitleRelevance DESC', 'Relevance DESC'])->limit(30);
   }
 
-  public function Query() {
+  public function Query()
+  {
     return $this->query;
   }
- 
+
   public function Results()
   {
     return PaginatedList::create(
@@ -72,8 +72,9 @@ class SearchPageController extends PageController
     )->setPageLength(2);
   }
 
-  public function json(HTTPRequest $request) {   
-   
+  public function json()
+  {
+
     $suggestions = [];
 
     foreach ($this->results as $page) {
@@ -83,8 +84,8 @@ class SearchPageController extends PageController
 
       array_push($suggestions, $suggestion);
     }
-    
-    $this->response->addHeader('Content-Type', 'application/json'); 
+
+    $this->response->addHeader('Content-Type', 'application/json');
     return json_encode($suggestions);
   }
 }

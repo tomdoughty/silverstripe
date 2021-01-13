@@ -2,10 +2,8 @@
 
 class ServicePageController extends PageController
 {
-  private static $allowed_actions = [];
-
-  protected function init() 
+  protected function init()
   {
-      parent::init();
+    parent::init();
   }
 }

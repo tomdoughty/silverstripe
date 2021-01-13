@@ -1,6 +1,5 @@
 <?php
 
-class HubPage extends Page 
+class HubPage extends Page
 {
-  
 }

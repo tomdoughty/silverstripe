@@ -1,5 +1,5 @@
 <?php
 
-class ServicePage extends Page 
+class ServicePage extends Page
 {
 }

@@ -16,7 +16,7 @@ class NewsHolderPageController extends PageController
   protected $results;
   protected $totalCount;
 
-  protected function init ()
+  protected function init()
   {
     parent::init();
 
@@ -29,13 +29,13 @@ class NewsHolderPageController extends PageController
     $this->resultsCount = $this->results->Count();
   }
 
-  public function category (HTTPRequest $request)
+  public function category(HTTPRequest $request)
   {
     $category = NewsCategory::get()->byID(
       $request->param('ID')
     );
 
-    if(!$category) {
+    if (!$category) {
       return $this->httpError(404);
     }
 
@@ -53,11 +53,11 @@ class NewsHolderPageController extends PageController
     $year = $request->param('ID');
     $month = $request->param('OtherID');
 
-    if(!$year) return $this->httpError(404);
+    if (!$year) return $this->httpError(404);
 
     $startDate = $month ? "{$year}-{$month}-01" : "{$year}-01-01";
 
-    if(strtotime($startDate) === false) {
+    if (strtotime($startDate) === false) {
       return $this->httpError(404, 'Invalid date');
     }
 
@@ -78,21 +78,22 @@ class NewsHolderPageController extends PageController
     ];
   }
 
-  public function rss() 
+  public function rss()
   {
     return RSSFeed::create(
-        $this->Results(10), 
-        $this->Link(), 
-        "10 Most Recent News Articles", 
-        "Shows a list of the most recent news articles."
+      $this->Results(10),
+      $this->Link(),
+      "10 Most Recent News Articles",
+      "Shows a list of the most recent news articles."
     )->outputToBrowser();
   }
 
-  public function ArticleCount() {
+  public function ArticleCount()
+  {
     return $this->resultsCount;
   }
 
-  public function Results ($pages = 2)
+  public function Results($pages = 2)
   {
     return PaginatedList::create(
       $this->results,

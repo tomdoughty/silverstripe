@@ -1,5 +1,5 @@
 <?php
 
-class ContactPage extends Page 
+class ContactPage extends Page
 {
 }

@@ -2,11 +2,11 @@
 
 use SilverStripe\CMS\Model\SiteTree;
 
-class Page extends SiteTree 
+class Page extends SiteTree
 {
   public function getCMSFields()
   {
-    $fields = parent::getCMSFields();      
+    $fields = parent::getCMSFields();
     return $fields;
   }
 

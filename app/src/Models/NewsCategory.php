@@ -4,7 +4,8 @@ use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
 
-class NewsCategory extends DataObject {
+class NewsCategory extends DataObject
+{
 
   private static $table_name = 'NewsCategory';
 
@@ -30,7 +31,7 @@ class NewsCategory extends DataObject {
   public function Link()
   {
     return $this->ArticleHolder()->Link(
-      'category/'.$this->ID
+      'category/' . $this->ID
     );
   }
 

@@ -1,11 +1,11 @@
 <?php
 
-use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Assets\Image;
 use SilverStripe\Control\Director;
 
-class Consultant extends DataObject {
+class Consultant extends DataObject
+{
 
   private static $table_name = 'Consultant';
 
@@ -26,9 +26,9 @@ class Consultant extends DataObject {
     'Name',
     'Email'
   ];
-  
+
   private static $owns = ['Image'];
-  
+
   private static $default_sort = 'LastName ASC, FirstName ASC';
 
   private static $indexes = [
@@ -39,14 +39,14 @@ class Consultant extends DataObject {
       ],
     ],
   ];
-    
+
   public static function FormSlug($value, $separator = '-')
   {
     $slug = str_replace(' ', $separator, strtolower($value));
     $slug = str_replace('&', 'and', $slug);
     $slug = preg_replace('/[^a-z0-9\\' . $separator . ']?/', '', $slug);
     while (stripos($slug, $separator . $separator) !== false) {
-        $slug = str_replace($separator . $separator, $separator, $slug);
+      $slug = str_replace($separator . $separator, $separator, $slug);
     }
     return $slug;
   }

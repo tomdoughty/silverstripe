@@ -1,7 +1,5 @@
 <?php
 
-use SilverStripe\ORM\ArrayList;
-use SilverStripe\View\ArrayData;
 use SilverStripe\ORM\ValidationResult;
 
 class FormValidator
@@ -11,8 +9,6 @@ class FormValidator
     $validationResult = null;
 
     foreach ($rules as $field => $checks) {
-      $valid = true;
-      
       if (array_key_exists($field, $data)) {
         $value = $data[$field];
         $value_valid = true;
@@ -33,8 +29,7 @@ class FormValidator
               $form->Fields()->dataFieldByName($field)
             );
             if (!$value_valid) {
-              if(is_null($validationResult)) 
-              {
+              if (is_null($validationResult)) {
                 $validationResult = ValidationResult::create()
                   ->addError('We have been unable to complete your submission due to the following errors. Please fix them and try again.');;
               }
@@ -62,7 +57,7 @@ class FormValidator
     return false;
   }
 
-  public function required($value, $valid, $field)
+  public function required($value)
   {
     if (is_null($value)) {
       return false;
@@ -75,39 +70,12 @@ class FormValidator
     }
   }
 
-    public function email_address($value, $valid, $field)
-    {
-      if (strlen($value) > 0) {
-        return preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/", $value);
-      } else {
-        return true;
-      }
-    }
-
-    public function mx_records($value, $valid, $field)
-    {
-      if ($valid) {
-        return getmxrr(substr($value, strripos($value, '@') + 1), $hosts);
-      }
+  public function email_address($value)
+  {
+    if (strlen($value) > 0) {
+      return preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/", $value);
+    } else {
       return true;
     }
-
-    public function number($value, $valid, $field)
-    {
-      return ($valid && strlen($value) > 0) ? is_numeric($value) : true;
-    }
-
-    public function number_integer($value, $valid, $field)
-    {
-      return ($valid && strlen($value) > 0) ? ctype_digit($value) : true;
-    }
-
-    public function phone_number($value, $valid, $field)
-    {
-      if (strlen($value) > 0) {
-        return eregi("^[0-9]{11}$", $value);
-      } else {
-        return true;
-      }
-    }
+  }
 }

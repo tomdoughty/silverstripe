@@ -9,13 +9,13 @@ use SilverStripe\Forms\CheckboxSetField;
 
 class NewsPage extends Page
 {
-	private static $can_be_root = false;
+  private static $can_be_root = false;
 
-	private static $db = [
-		'Date' => 'Date',
-		'Teaser' => 'Text',
-		'BlogAuthor' => 'Text'
-	];
+  private static $db = [
+    'Date' => 'Date',
+    'Teaser' => 'Text',
+    'BlogAuthor' => 'Text'
+  ];
 
   private static $has_one = [
     'Image' => Image::class
@@ -29,33 +29,38 @@ class NewsPage extends Page
     'Image'
   ];
 
-	public function getCMSFields()
-	{
-		$fields = parent::getCMSFields();
-    
+  public function getCMSFields()
+  {
+    $fields = parent::getCMSFields();
+
     $fields->addFieldToTab('Root.Main', DateField::create('Date', 'Date of article'), 'Content');
-    
-    $fields->addFieldToTab('Root.Main', TextareaField::create('Teaser')
-			->setDescription('This is the summary that appears on the article list page.'),
-			'Content'
+
+    $fields->addFieldToTab(
+      'Root.Main',
+      TextareaField::create('Teaser')
+        ->setDescription('This is the summary that appears on the article list page.'),
+      'Content'
     );
-    
+
     $fields->addFieldToTab('Root.Main', TextField::create('BlogAuthor', 'Author'), 'Content');
-    
-    $fields->addFieldToTab('Root.Attachments',  UploadField::create('Image')
-      ->setFolderName('news')
+
+    $fields->addFieldToTab(
+      'Root.Attachments',
+      UploadField::create('Image')
+        ->setFolderName('news')
     );
-    
+
     $fields->addFieldToTab('Root.Categories', CheckboxSetField::create(
       'Categories',
       'Selected categories',
       $this->Parent()->Categories()->map('ID', 'Title')
     ));
-    
-		return $fields;
-	}
 
-  public function PrevArticle() {
+    return $fields;
+  }
+
+  public function PrevArticle()
+  {
     return NewsPage::get()
       ->filter([
         'ParentID' => $this->ParentID,
@@ -66,7 +71,8 @@ class NewsPage extends Page
       ->first();
   }
 
-  public function NextArticle() {
+  public function NextArticle()
+  {
     return NewsPage::get()
       ->filter([
         'ParentID' => $this->ParentID,

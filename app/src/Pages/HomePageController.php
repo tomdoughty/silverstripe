@@ -1,7 +1,5 @@
 <?php
 
-use SilverStripe\Control\HTTPRequest;
-
 class HomePageController extends PageController
 {
   private static $allowed_actions = [
@@ -10,7 +8,7 @@ class HomePageController extends PageController
 
   protected function init()
   {
-      parent::init();
+    parent::init();
   }
 
   public function EnabledSlides()
@@ -25,18 +23,19 @@ class HomePageController extends PageController
       ->Limit($count);
   }
 
-  public function sitemap(HTTPRequest $request) {
-    $this->response->addHeader('Content-Type', 'application/json');    
-  
+  public function sitemap()
+  {
+    $this->response->addHeader('Content-Type', 'application/json');
+
     $array = [];
 
     foreach (Page::get() as $page) {
       array_push($array, $page->AbsoluteLink());
     }
-    
+
     $associativeArray = [];
-    $associativeArray ['urls'] = $array;
-    
+    $associativeArray['urls'] = $array;
+
     return json_encode($associativeArray);
   }
 }

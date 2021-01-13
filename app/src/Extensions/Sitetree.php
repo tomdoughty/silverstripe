@@ -1,6 +1,5 @@
 <?php
 
-use SilverStripe\Core\Convert;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
 use SilverStripe\Forms\FieldList;
@@ -38,14 +37,15 @@ class SiteTree extends DataExtension
     MySQLSchemaManager::ID => 'ENGINE=MyISAM',
   ];
 
-  public function updateCMSFields(FieldList $fields) {
+  public function updateCMSFields(FieldList $fields)
+  {
     $fields->removeByName('MetaTitle');
     $fields->removeByName('MetaDescription');
     $fields->removeByName('MetaKeywords');
     $fields->removeByName('MetaRobots');
     $fields->removeByName('ExtraMeta');
     $fields->removeByName('Metadata');
-    
+
     $fields->addFieldToTab(
       'Root.Main',
       FieldGroup::create(
@@ -73,11 +73,13 @@ class SiteTree extends DataExtension
     );
   }
 
-  public function MetaTitle() {
+  public function MetaTitle()
+  {
     return $this->owner->MetaTitle ? $this->owner->MetaTitle : $this->owner->Title;
   }
 
-  public function GetDefaultDescription() {
+  public function GetDefaultDescription()
+  {
     if ($this->owner->Content) {
       $description = trim($this->owner->obj('Content')->Summary(20, 5));
       if (!empty($description)) {
@@ -87,7 +89,8 @@ class SiteTree extends DataExtension
     return null;
   }
 
-  public function MetaDescription() {
+  public function MetaDescription()
+  {
     return $this->owner->MetaDescription ? $this->owner->MetaDescription : $this->owner->GetDefaultDescription();
   }
 }
