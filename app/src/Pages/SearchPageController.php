@@ -37,23 +37,26 @@ class SearchPageController extends PageController
         Convert::raw2sql($this->query)
       ))->limit(30);
 
-    $consultants = Consultant::get()
-      ->where(sprintf(
-        "MATCH (%s) AGAINST ('%s*' IN BOOLEAN MODE)",
-        implode(",", singleton(Consultant::class)->stat('indexes')['SearchFields']['columns']),
-        Convert::raw2sql($this->query)
-      ))->sort(sprintf(
-        "LastName LIKE '%%%s%%' DESC, MATCH (%s) AGAINST ('%s*') DESC",
-        Convert::raw2sql($this->query),
-        implode(",", singleton(Consultant::class)->stat('indexes')['SearchFields']['columns']),
-        Convert::raw2sql($this->query)
-      ))->limit(30);
-
     foreach ($pages as $page) {
       $results->push(SearchResultViewModel::create($page));
     }
-    foreach ($consultants as $consultant) {
-      $results->push(SearchResultViewModel::create($consultant));
+
+    if ($this->query) {
+      $consultants = Consultant::get()
+        ->where(sprintf(
+          "MATCH (%s) AGAINST ('%s*' IN BOOLEAN MODE)",
+          implode(",", singleton(Consultant::class)->stat('indexes')['SearchFields']['columns']),
+          Convert::raw2sql($this->query)
+        ))->sort(sprintf(
+          "LastName LIKE '%%%s%%' DESC, MATCH (%s) AGAINST ('%s*') DESC",
+          Convert::raw2sql($this->query),
+          implode(",", singleton(Consultant::class)->stat('indexes')['SearchFields']['columns']),
+          Convert::raw2sql($this->query)
+        ))->limit(30);
+
+      foreach ($consultants as $consultant) {
+        $results->push(SearchResultViewModel::create($consultant));
+      }
     }
 
     $this->results = $results->sort(['TitleRelevance DESC', 'Relevance DESC'])->limit(30);
