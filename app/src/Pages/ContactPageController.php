@@ -20,15 +20,9 @@ class ContactPageController extends PageController
   public function Form()
   {
     $fields = FieldList::create(
-      TextField::create('Name', 'Name')
-        ->addExtraClass('nhsuk-input')
-        ->setFieldHolderTemplate('Forms/FormField_holder'),
-      TextField::create('Email', 'Email')
-        ->addExtraClass('nhsuk-input')
-        ->setFieldHolderTemplate('Forms/FormField_holder'),
+      TextField::create('Name', 'Name'),
+      TextField::create('Email', 'Email'),
       TextareaField::create('Message', 'Message')
-        ->addExtraClass('nhsuk-textarea')
-        ->setFieldHolderTemplate('Forms/FormField_holder')
     );
 
     $actions = FieldList::create(
@@ -36,10 +30,7 @@ class ContactPageController extends PageController
         ->addExtraClass('nhsuk-button')
     );
 
-    $form = Form::create($this, 'Form', $fields, $actions);
-    $form->setTemplate('Forms/Form');
-
-    return $form;
+    return Form::create($this, 'Form', $fields, $actions);
   }
 
   public function Submit($data, $form)
