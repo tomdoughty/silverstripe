@@ -8,15 +8,24 @@
         <ul class="nhsuk-list nhsuk-list--border nhsuk-u-padding-top-4 ">
           <% loop $Results %>
             <li class="nhsuk-u-padding-bottom-4 nhsuk-u-margin-bottom-4">
-              <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-4"><a href="$Link">$Title</a></h2>
-              <p class="nhsuk-body-s nhsuk-u-margin-bottom-3">
-                <% if $BlogAuthor %>$BlogAuthor, <% end_if %>
-                $Date.Format("d MMMM yyyy")
-                <% if $Categories %> - <% loop $Categories %><a class="nhsuk-related-nav__link" href="$Link">$Title</a><% if not $Last %>, <% end_if %><% end_loop %><% end_if %>
-              </p>
-              <img src="$Image.ScaleMaxWidth(720).URL" alt="" class="nhsuk-image__img nhsuk-u-margin-bottom-3" />
-              <p class="nhsuk-u-margin-bottom-4">$Content.LimitWordCount(40)</p>
-              <a href="$Link" class="nhsuk-u-margin-bottom-0 nhsuk-body-s">Read more<span class="nhsuk-u-visually-hidden">of $Title</span></a>
+              <% if $User %>
+                <h2 class="nhsuk-u-visually-hidden">Tweet from @$User</h2>
+                <p class="nhsuk-u-margin-bottom-3">
+                  <a href="http://www.twitter.com/{$User}" target="_blank">@$User</a>, $Date.Format("d MMMM yyyy")
+                </p>
+                <p class="nhsuk-u-margin-bottom-4">$Content</p>
+                <a href="$Link" target="_blank" class="nhsuk-u-margin-bottom-0 nhsuk-body-s">View on Twitter</a>
+              <% else %>
+                <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-4"><a href="$Link">$Title</a></h2>
+                <p class="nhsuk-body-s nhsuk-u-margin-bottom-3">
+                  <% if $BlogAuthor %>$BlogAuthor, <% end_if %>
+                  $Date.Format("d MMMM yyyy")
+                  <% if $Categories %> - <% loop $Categories %><a class="nhsuk-related-nav__link" href="$Link">$Title</a><% if not $Last %>, <% end_if %><% end_loop %><% end_if %>
+                </p>
+                <img src="$Image.ScaleMaxWidth(720).URL" alt="" class="nhsuk-image__img nhsuk-u-margin-bottom-3" />
+                <p class="nhsuk-u-margin-bottom-4">$Content.LimitWordCount(40)</p>
+                <a href="$Link" class="nhsuk-u-margin-bottom-0 nhsuk-body-s">Read more<span class="nhsuk-u-visually-hidden">of $Title</span></a>
+              <% end_if %>
             </li>
           <% end_loop %>
         </ul>

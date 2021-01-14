@@ -21,11 +21,18 @@ class NewsHolderPageController extends PageController
     parent::init();
 
     RSSFeed::linkToFeed($this->Link("rss"), "10 Most Recent News Articles");
+    
+    $results = $this->LatestTweets(200);
 
-    $this->results = NewsPage::get()->filter([
+    $news = NewsPage::get()->filter([
       'ParentID' => $this->ID
-    ])->sort('Date DESC');
+    ]);
 
+    foreach ($news as $page) {
+      $results->push($page);
+    }
+
+    $this->results = $results->sort(['Date DESC']);
     $this->resultsCount = $this->results->Count();
   }
 
@@ -93,7 +100,7 @@ class NewsHolderPageController extends PageController
     return $this->resultsCount;
   }
 
-  public function Results($pages = 2)
+  public function Results($pages = 10)
   {
     return PaginatedList::create(
       $this->results,
