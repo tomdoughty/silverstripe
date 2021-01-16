@@ -7,6 +7,8 @@ services:
   
   database:
     image: mysql:5.7
+    env_file:
+      - docker-compose.env
     volumes:
       - db-data:/var/lib/mysql
 
@@ -22,6 +24,8 @@ services:
 
   silverstripe:
     image: brettt89/silverstripe-web:7.4-apache
+    env_file:
+      - docker-compose.env
     ports:
       - 8080:80
     volumes:
