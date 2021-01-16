@@ -15,11 +15,17 @@ RUN npm run build
 FROM brettt89/silverstripe-web:7.4-apache
 ENV DOCUMENT_ROOT /usr/src/myapp
 
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+
 COPY . $DOCUMENT_ROOT
 
 COPY --from=frontend /node/public $DOCUMENT_ROOT/public
 
 WORKDIR $DOCUMENT_ROOT
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install
