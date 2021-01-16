@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18d6d6f5bb9e1abf9c8c3d22d5866c31",
+    "content-hash": "ad42d28a86418bdfb461d9c285a3ec06",
     "packages": [
         {
             "name": "bramus/ansi-php",
@@ -3082,62 +3082,6 @@
             "time": "2020-10-24T10:57:07+00:00"
         },
         {
-            "name": "tractorcow/silverstripe-twitter",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tractorcow/silverstripe-twitter.git",
-                "reference": "fef21ba2107a45c54db0baa6595ca2b7220a303a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tractorcow/silverstripe-twitter/zipball/fef21ba2107a45c54db0baa6595ca2b7220a303a",
-                "reference": "fef21ba2107a45c54db0baa6595ca2b7220a303a",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "*",
-                "silverstripe/framework": "^4.0"
-            },
-            "suggest": {
-                "silverstripe/widgets": "Put your tweets in your blog or page sidebar!"
-            },
-            "default-branch": true,
-            "type": "silverstripe-vendormodule",
-            "extra": {
-                "installer-name": "twitter",
-                "branch-alias": {
-                    "dev-master": "4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TractorCow\\Twitter\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Damian Mooyman",
-                    "email": "damian.mooyman@gmail.com"
-                }
-            ],
-            "description": "Simple Twitter feed for Silverstripe",
-            "keywords": [
-                "silverstripe",
-                "twitter",
-                "widget"
-            ],
-            "support": {
-                "issues": "http://github.com/tractorcow/silverstripe-twitter/issues",
-                "source": "https://github.com/tractorcow/silverstripe-twitter/tree/master"
-            },
-            "time": "2019-07-12T02:04:15+00:00"
-        },
-        {
             "name": "undefinedoffset/sortablegridfield",
             "version": "2.0.8",
             "source": {
@@ -4640,8 +4584,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "silverstripe/recipe-cms": 0,
-        "silverstripe/login-forms": 0,
-        "tractorcow/silverstripe-twitter": 20
+        "silverstripe/login-forms": 0
     },
     "prefer-stable": true,
     "prefer-lowest": false,
