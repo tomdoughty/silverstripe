@@ -4,4 +4,5 @@ Name: mytheme
 SilverStripe\View\SSViewer:
   themes:
     - '$public'
+    - 'nhs'
     - '$default'
