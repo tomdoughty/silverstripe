@@ -7,7 +7,6 @@ RewriteRule ^(.*)$ public/$1
 	Header set X-Frame-Options "SAMEORIGIN"
 	Header set X-Content-Type-Options "nosniff"
 	Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
-  Header set Content-Security-Policy "default-src 'self';"
 	Header set Referrer-Policy "same-origin"
 </IfModule>
 
