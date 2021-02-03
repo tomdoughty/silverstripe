@@ -13,7 +13,7 @@
   <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" rel="preload" as="font" crossorigin>
   <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-65Bold.woff2" rel="preload" as="font" crossorigin>
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <link rel="stylesheet" type="text/css" href="/public/css/main.css" />
 
   <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="/images/favicons/apple-touch-icon-180x180.png">
@@ -34,7 +34,7 @@
   <meta property="og:locale" content="en_GB">
   <meta property="og:image" content="$ShareImage.AbsoluteURL">
 
-  <script type="text/javascript" src="/javascript/main.js" defer></script>
+  <script src="/public/javascript/main.js" defer></script>
 </head>
 <body>
   <% include Header %>
