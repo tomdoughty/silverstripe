@@ -77,7 +77,6 @@ class SearchPageController extends PageController
 
   public function json()
   {
-
     $suggestions = [];
 
     foreach ($this->results as $page) {
@@ -89,6 +88,6 @@ class SearchPageController extends PageController
     }
 
     $this->response->addHeader('Content-Type', 'application/json');
-    return json_encode($suggestions);
+    return json_encode(array_slice($suggestions, 0, 10));
   }
 }
