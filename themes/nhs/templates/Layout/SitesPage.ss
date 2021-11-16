@@ -2,7 +2,7 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-full">
       <h1>Find a walk-in coronavirus (COVID-19) vaccination site</h1>
-      <form method="get" action="/sites/results">
+      <form method="get" action="/find-a-walk-in-coronavirus-covid-19-vaccination-site/results">
         <div class="nhsuk-form-group">
           <label class="nhsuk-label" for="postcode">
             Enter a postcode
