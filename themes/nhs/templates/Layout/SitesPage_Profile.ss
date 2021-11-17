@@ -8,7 +8,7 @@
       <p><a href="https://maps.google.com/?ll=$Site.Latitude,$Site.Longitude">Map<span class="nhsuk-u-visually-hidden"> for $Site.Name</span></a></p>
 
       <h2>Who can use this site</h2>
-      <p>This site is for these age groups: 12-15</p>
+      <p>This site is for these age groups: $Site.AgeGroup</p>
       <p class="nhsuk-inset-text nhsuk-u-margin-top-0">
         When you arrive, the staff will ask you questions to ensure you’re only offered suitable vaccines.
       </p>
@@ -29,97 +29,46 @@
             </tr>
           </thead>
           <tbody class="nhsuk-table__body">
-            <% include VaccineAvailabilityRow Title="1st Dose", Available=$Site.FirstDose %> 
-            <% include VaccineAvailabilityRow Title="AstraZeneca 2nd Dose", Available=$Site.AstraZenecaDoseTwo %> 
-            <% include VaccineAvailabilityRow Title="Pfizer 2nd Dose", Available=$Site.PfizerDoseTwo %> 
-            <% include VaccineAvailabilityRow Title="Moderna 2nd Dose", Available=$Site.ModernaDoseTwo %> 
-            <% include VaccineAvailabilityRow Title="Booster Dose", Available=$Site.BoosterDose %> 
-            <% include VaccineAvailabilityRow Title="3rd Dose", Available=$Site.ThreeDose %>          
+            <% include VaccineAvailabilityRow Title="1st dose", Available=$Site.FirstDose %> 
+            <% include VaccineAvailabilityRow Title="AstraZeneca 2nd dose", Available=$Site.AstraZenecaDoseTwo %> 
+            <% include VaccineAvailabilityRow Title="Pfizer 2nd dose", Available=$Site.PfizerDoseTwo %> 
+            <% include VaccineAvailabilityRow Title="Moderna 2nd dose", Available=$Site.ModernaDoseTwo %> 
+            <% include VaccineAvailabilityRow Title="Booster dose", Available=$Site.BoosterDose %> 
+            <% include VaccineAvailabilityRow Title="3rd dose", Available=$Site.ThreeDose %>          
           </tbody>
         </table>
       </div>
 
       <h2>Opening times</h2>
-          
-  <dl class="nhsuk-summary-list">
-      <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-              Day
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-              Wednesday
-          </dd>
-      </div>
-      <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-              Date
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-              10 November
-          </dd>
-      </div>
-      <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-              Opening hours
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-              3.30pm to 5.30pm
-          </dd>
-      </div>
-  </dl>
-  <dl class="nhsuk-summary-list">
-      <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-              Day
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-              Saturday
-          </dd>
-      </div>
-      <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-              Date
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-              13 November
-          </dd>
-      </div>
-      <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-              Opening hours
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-              7.30am to 5.30pm
-          </dd>
-      </div>
-  </dl>
-  <dl class="nhsuk-summary-list">
-      <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-              Day
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-              Sunday
-          </dd>
-      </div>
-      <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-              Date
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-              14 November
-          </dd>
-      </div>
-      <div class="nhsuk-summary-list__row">
-          <dt class="nhsuk-summary-list__key">
-              Opening hours
-          </dt>
-          <dd class="nhsuk-summary-list__value">
-              7.30am to 5.30pm
-          </dd>
-      </div>
-  </dl>
 
+      <% loop $Site.OpeningTimes %> 
+        <dl class="nhsuk-summary-list">
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">
+                    Day
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    $Date.Format(EEEE)
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">
+                    Date
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    $Date.Format(d MMMM)
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">
+                    Opening hours
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    $FormatTime(OpeningTime) to $FormatTime(ClosingTime)
+                </dd>
+            </div>
+        </dl>
+      <% end_loop %>
 
     </div>
   </div>

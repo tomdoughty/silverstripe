@@ -12,7 +12,7 @@ class SitesPageController extends PageController
 
   private static $url_handlers = [
     'results' => 'Results',
-    'profile/$Code' => 'Profile',
+    'profile/$Id' => 'Profile',
   ];
   
   protected function init()
@@ -29,39 +29,39 @@ class SitesPageController extends PageController
           * sin($latitudeTo * $rad) +  cos($latitudeFrom * $rad)
           * cos($latitudeTo * $rad) * cos($theta * $rad);
   
-      return acos($dist) / $rad * 60 *  1.853;
+      return acos($dist) / $rad * 60;
   }
 
   public function Results()
   {
+    $sites = ArrayList::create();;
     $postcode = $this->request->getVar('postcode');
 
-    $postcodeData = json_decode(file_get_contents(sprintf(
+    $postcodeDataRaw = @file_get_contents(sprintf(
       'https://api.postcodes.io/postcodes/%s',
       $postcode
-    )));
+    ));
 
-    $fromLatitude = $postcodeData->result->latitude;
-    $fromLongitude = $postcodeData->result->longitude;
+    $postcodeData = json_decode($postcodeDataRaw);
 
-    $sites = ArrayList::create();;
+    if ($postcodeData) {
+      $fromLatitude = $postcodeData->result->latitude;
+      $fromLongitude = $postcodeData->result->longitude;
 
-    foreach (Site::get() as $site) {
-      $toLatitude = $site->Latitude;
-      $toLongitude = $site->Longitude;
+      foreach (Site::get() as $site) {
+        $site->Distance = round($this->distance(
+          $fromLatitude,
+          $fromLongitude,
+          $site->Latitude,
+          $site->Longitude
+        ), 2);
 
-      $site->Distance = round($this->distance(
-        $fromLatitude,
-        $fromLongitude,
-        $toLatitude,
-        $toLongitude
-      ), 2);
+        $site->DirectionsUrl = sprintf("http://maps.google.com/maps/dir/?api=1&amp;origin=%s,%s&amp;destination=%s&amp;t=m", $fromLatitude, $fromLongitude, urlencode($site->Address()));
+        $sites->push($site);
+      }
 
-      $site->DirectionsUrl = sprintf("http://maps.google.com/maps/dir/?api=1&amp;origin=%s,%s&amp;destination=%s&amp;t=m", $fromLatitude, $fromLongitude, urlencode($site->Address()));
-      $sites->push($site);
+      $sites = $sites->sort('Distance');
     }
-
-    $sites = $sites->sort('Distance');
 
     $breadcrumbs = $this->Breadcrumbs();
     foreach ($this->Parent()->getAncestors() as $ancestor) {
@@ -78,9 +78,7 @@ class SitesPageController extends PageController
 
   public function Profile()
   {
-    $site = Site::get()->filter([
-      'Code' => $this->request->param('Code')
-    ])->First();
+    $site = Site::get()->byID($this->request->param('Id'));
 
     $breadcrumbs = $this->Breadcrumbs();
     foreach ($this->Parent()->getAncestors() as $ancestor) {
